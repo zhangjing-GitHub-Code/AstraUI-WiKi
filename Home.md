@@ -3,46 +3,46 @@ Welcome to the oled-ui-astra wiki!
 ![logo](https://github.com/dcfsswindy/oled-ui-astra/assets/59963050/e66f0167-a0fd-44ac-af46-a84c78283ab9#pic_left)
 
 
-# 目录 / Contents
-+ `astra UI` 介绍 / `astra UI` Introduction
-	+ 简介 / Synopsis
-	+ 硬件要求 / Hardware Requirements
-	+ 文件结构 / File Structure
-	+ 关于 `Item` / About `Item`
-		+ 基本概念 / Basic Concept
+# 目录 Contents
++ `astra UI` 介绍  `astra UI` Introduction
+	+ 简介 Synopsis
+	+ 硬件要求 Hardware Requirements
+	+ 文件结构 File Structure
+	+ 关于 `Item`  About `Item`
+		+ 基本概念 Basic Concept
 		+ `Menu`
 		+ `Widget` *(future)*
 		+ `Camera`
 		+ `Selector`
 		+ `Launcher`
-	+ 接口/ `APIs`
+	+ 接口  `APIs`
 		+ `Menu`
 		+ `Widget` *(future)*
 		+ `Camera`
 		+ `Selector`
 		+ `Launcher`
-	+ 关于 `HAL` / About `HAL`
-+ **移植（部署）教程 / Migration (Deployment) Tutorial**
-	+ 编写派生 `HAL` / Write Derived `HAL`
-		+ 继承 `HAL` 类 / Inherit the `HAL` Class
-		+ 链接图形库 *（可选的）* / Link Graphics Library *(optional)*
-		+ 编写 `_xx_init()` 方法 /  Write `_xx_init()` Method
-		+ 重写 `init()` 方法 / Override `init()` Method
-		+ 重写其他方法 / Override Other Method
-		+ 编写其他方法 *（可选的）* / Write Other Method *(optional)*
-	+ 注入派生 `HAL` / Inject Derived `HAL`
-	+ 运行 `HAL` 测试程序 / Run the HAL Test Program
+	+ 关于 `HAL`  About `HAL`
++ **移植（部署）教程 Migration (Deployment) Tutorial**
+	+ 编写派生 `HAL`  Write Derived `HAL`
+		+ 继承 `HAL` 类  Inherit the `HAL` Class
+		+ 链接图形库 *（可选的）* Link Graphics Library *(optional)*
+		+ 编写 `_xx_init()` 方法 Write `_xx_init()` Method
+		+ 重写 `init()` 方法 Override `init()` Method
+		+ 重写其他方法 Override Other Method
+		+ 编写其他方法 *（可选的）* Write Other Method *(optional)*
+	+ 注入派生 `HAL`  Inject Derived `HAL`
+	+ 运行 `HAL` 测试程序 Run the HAL Test Program
 	+ Have Fun! 
-+ 例程 / Example 
-+ 更新计划&更新日志 / Update Program & Update Log
++ 例程 Example 
++ 更新计划&更新日志 Update Program & Update Log
 
-#  `astra UI` 介绍 / `astra UI` Introduction
-## 简介 / Synopsis
-### 基本信息
+#  `astra UI` 介绍  `astra UI` Introduction
+## 简介 Synopsis
+### 基本信息 Basic Infomation
 `astra UI` 是一个基于 `Cpp` 语言的，面向对象开发的多级菜单 UI 框架。
 `astra UI` 由各种 `item` 组成，其中包括列表类菜单 `List` 、图标类菜单 `Tile` 、选择器 `Selector` 、摄像机 `Camera` 以及控件 `Widget` *（下个版本）*
-## 硬件要求 / Hardware Requirements
-### 处理器 / 开发板
+## 硬件要求 Hardware Requirements
+### 处理器/开发板 MCU & Board
 `astra UI` 可以支持目前主流的硬件平台，包括 `STM32` 、`Arduino` 、`ESP32` 等。
 若您的硬件平台默认情况下不支持 `C++` 编程（如 `STM32` ），可在网络上搜索对应的支持方式。只要硬件平台可以支持 `C++` 编程，`astra UI` 都可以成功部署并运行。
 但仍有一些推荐的硬件平台配置，若您的硬件平台满足以下配置，可能会获得比较优秀的使用体验：
@@ -74,14 +74,14 @@ Welcome to the oled-ui-astra wiki!
 > 其具有 128 KB 的 RAM；72 MHz 的主频率。
 > 如果您的硬件平台与笔者相同，可以直接刷入仓库中的源码，无需另外移植。
 > 笔者的具体接线方式，可参考下文“例程”内容。
-### 支持的屏幕
+### 支持的屏幕 Supported Screens
 从理论上讲，`astra UI` 不限制使用屏幕的分辨率、颜色和刷新率等。
 但是，推荐的屏幕条件如下：
 + 硬件刷新率大于 50 帧每秒（`SSD1306` 的硬件刷新率是 106 帧每秒）
 + 屏幕高度（纵向）大于等于 32 像素
 + 屏幕宽度（横向）大于等于 64 像素
 
-## 文件结构 / File Structure
+## 文件结构 File Structure
 ```BASH
 └─astra-ui-v0-0-2-alpha           # astra UI主文件夹
     ├─astra                       # UI文件夹
