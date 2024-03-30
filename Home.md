@@ -1,6 +1,6 @@
 Welcome to the oled-ui-astra wiki!
 
-![logo](https://github.com/dcfsswindy/oled-ui-astra/assets/59963050/e66f0167-a0fd-44ac-af46-a84c78283ab9#pic_left)
+![image](https://github.com/dcfsswindy/oled-ui-astra/assets/59963050/159bd518-976e-4fa5-bb5c-66452e0d698a)
 
 
 # 目录 Contents
