@@ -173,6 +173,13 @@ rootPage->addItem(new astra::Menu("test1"));              //向根菜单中添�
 //rootPage->addItem(new astra::Menu("test1", pic_0));     //向根菜单中添加一个图标类 标题为"test1" 图标为pic_0
 ```
 
+##### 注意事项
++ 给空菜单 `Menu1` 添加的第一个子菜单 `Menu2` 的类型 `selfType` ，决定了 `Menu1` 菜单的类型，即 `childType` 。
+	+ 如果 `Menu2` 是列表类菜单，那么 `Menu1` 就被判定为列表类，以列表类的方式对所有子菜单项进行渲染。
+	+ 若之后再向 `Menu1` 中添加子菜单，只能是列表类，以此类推。
+	+ 如果向 `Menu1` 中添加了错误类型的子菜单，该方法就会返回 `False` 。 
++ 渲染菜单时，会根据此菜单的 `childType` 进行渲染。
+
 #### `render()` 方法
 用于渲染当前页面。请注意， `render()` 方法本质上是在渲染当前菜单
 
