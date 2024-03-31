@@ -3,46 +3,58 @@ Welcome to the oled-ui-astra wiki!
 ![image](https://github.com/dcfsswindy/oled-ui-astra/assets/59963050/159bd518-976e-4fa5-bb5c-66452e0d698a)
 
 
-# 目录 Contents
-+ `astra UI` 介绍  `astra UI` Introduction
-	+ 简介 Synopsis
-	+ 硬件要求 Hardware Requirements
-	+ 文件结构 File Structure
-	+ 关于 `Item`  About `Item`
-		+ 基本概念 Basic Concept
+# 目录 - Contents
++ `astra UI` 介绍 - `astra UI` Introduction
+	+ 简介 - Synopsis
+	+ 硬件要求 - Hardware Requirements
+	+ 文件结构 - File Structure
+	+ 关于 `Item` - About `Item`
+		+ 基本概念 - Basic Concept
 		+ `Menu`
 		+ `Widget` *(future)*
 		+ `Camera`
 		+ `Selector`
 		+ `Launcher`
-	+ 接口  `APIs`
+	+ 接口 - `APIs`
 		+ `Menu`
 		+ `Widget` *(future)*
 		+ `Camera`
 		+ `Selector`
 		+ `Launcher`
-	+ 关于 `HAL`  About `HAL`
-+ **移植（部署）教程 Migration (Deployment) Tutorial**
-	+ 编写派生 `HAL`  Write Derived `HAL`
-		+ 继承 `HAL` 类  Inherit the `HAL` Class
-		+ 链接图形库 *（可选的）* Link Graphics Library *(optional)*
-		+ 编写 `_xx_init()` 方法 Write `_xx_init()` Method
-		+ 重写 `init()` 方法 Override `init()` Method
-		+ 重写其他方法 Override Other Method
-		+ 编写其他方法 *（可选的）* Write Other Method *(optional)*
-	+ 注入派生 `HAL`  Inject Derived `HAL`
-	+ 运行 `HAL` 测试程序 Run the HAL Test Program
+	+ 关于 `HAL` - About `HAL`
++ **移植（部署）教程 - Migration (Deployment) Tutorial**
+	+ 编写派生 `HAL` - Write Derived `HAL`
+		+ 继承 `HAL` 类 - Inherit the `HAL` Class
+		+ 链接图形库 *（可选的）* - Link Graphics Library *(optional)*
+		+ 编写 `_xx_init()` 方法 - Write `_xx_init()` Method
+		+ 重写 `init()` - 方法 Override `init()` Method
+		+ 重写其他方法 - Override Other Method
+		+ 编写其他方法 *（可选的）* - Write Other Method *(optional)*
+	+ 注入派生 `HAL` - Inject Derived `HAL`
+	+ 运行 `HAL` 测试程序 - Run the HAL Test Program
 	+ Have Fun! 
 + 例程 Example 
-+ 更新计划&更新日志 Update Program & Update Log
++ 更新计划&更新日志 - Update Program & Update Log
+---
 
-#  `astra UI` 介绍  `astra UI` Introduction
-## 简介 Synopsis
-### 基本信息 Basic Infomation
+# 简体中文 
+***or [English](#English)***
+
+##  `astra UI` 介绍
+### 简介
+#### 基本信息
 `astra UI` 是一个基于 `Cpp` 语言的，面向对象开发的多级菜单 UI 框架。
-`astra UI` 由各种 `item` 组成，其中包括列表类菜单 `List` 、图标类菜单 `Tile` 、选择器 `Selector` 、摄像机 `Camera` 以及控件 `Widget` *（下个版本）*
-## 硬件要求 Hardware Requirements
-### 处理器/开发板 MCU & Board
+`astra UI` 由各种 `item` 组成，其中包括：
++ 用户层元素
+	+ 列表类菜单 `List`
+	+ 图标类菜单 `Tile`
+	+ 控件 `Widget` *（下个版本）*
++ 系统级元素
+	+ 选择器 `Selector`
+	+ 摄像机 `Camera` 
+
+### 硬件要求
+#### 处理器/开发板
 `astra UI` 可以支持目前主流的硬件平台，包括 `STM32` 、`Arduino` 、`ESP32` 等。
 若您的硬件平台默认情况下不支持 `C++` 编程（如 `STM32` ），可在网络上搜索对应的支持方式。只要硬件平台可以支持 `C++` 编程，`astra UI` 都可以成功部署并运行。
 但仍有一些推荐的硬件平台配置，若您的硬件平台满足以下配置，可能会获得比较优秀的使用体验：
@@ -74,14 +86,14 @@ Welcome to the oled-ui-astra wiki!
 > 其具有 128 KB 的 RAM；72 MHz 的主频率。
 > 如果您的硬件平台与笔者相同，可以直接刷入仓库中的源码，无需另外移植。
 > 笔者的具体接线方式，可参考下文“例程”内容。
-### 支持的屏幕 Supported Screens
+#### 支持的屏幕
 从理论上讲，`astra UI` 不限制使用屏幕的分辨率、颜色和刷新率等。
 但是，推荐的屏幕条件如下：
 + 硬件刷新率大于 50 帧每秒（`SSD1306` 的硬件刷新率是 106 帧每秒）
 + 屏幕高度（纵向）大于等于 32 像素
 + 屏幕宽度（横向）大于等于 64 像素
 
-## 文件结构 File Structure
+### 文件结构
 ```BASH
 └─astra-ui-v0-0-2-alpha           # astra UI主文件夹
     ├─astra                       # UI文件夹
@@ -109,4 +121,93 @@ Welcome to the oled-ui-astra wiki!
        ├─hal.h                    # HAL父类
        └─hal.cpp                  # 存放了缺省的HAL类方法
 ```
+---
 
+# English
+***或者 [简体中文](#简体中文)***
+
+##  `astra UI` Introduction
+### Introduction
+#### Basic Information
+`astra UI` is a multi-level menu UI framework for object-oriented development based on the `Cpp` language.
+
+`astra UI` consists of various `items`, including: 
++ User-Level Element
+	+ list menu `List`
+	+ icon menu `Tile`
+	+ controls `Widgets` *(next version)*.
++ System-Level Elements
+	+ selector `Selector`
+	+ camera `Camera`
+
+### Hardware Requirement
+#### MCU / Board
+`astra UI` can support current mainstream hardware platforms, including `STM32`, `Arduino`, `ESP32` and so on.
+
+If your hardware platform does not support `C++` programming by default (e.g. `STM32`), you can search for the corresponding support on the web. As long as the hardware platform supports `C++` programming, `astra UI` can be successfully deployed and run.
+
+However, there are still some recommended hardware platform configurations. If your hardware platform meets the following configurations, you may get a better experience:
++ Mains frequency greater than or equal to 40 MHz
++ Display data transfer bus rates (e.g. `SPI`) greater than 1 Mbps *Optimization coming soon*.
+	+ In `astra UI v0.0.2-alpha`, the data transfer rate affects the speed of various animations.
+	+ This issue will be addressed in a subsequent update (see "Update Program" for details)
+	+ After the next release, normal software will be able to emulate the low-speed `I2C` protocol for a normal experience.
+	+ If your transfer rate does not meet this requirement, the animation will be slower, but **it won't affect the usage**.
++ RAM greater than or equal to 128 KB *Optimization coming soon*.
+	+ The structure of the program will be optimized and trimmed in subsequent updates.
+	+ Tested in `astra UI v0.0.2-alpha`:
+		+ Deploying `astra UI` to the hardware platform without adding any menus takes about 80 KB.
+		+ Add two levels of menus, including a page of icons and a page of lists, which takes up about 90 KB.
+		+ Add two levels of menus with seven elements, including a page of icons and a page of lists, approx. 100 KB
++ At least one `ADC` port (optional, for generating true random numbers, you can also generate them in other ways)
+	+ A true random number is used to generate the position of the background star for each boot animation.
+	+ If you want to change the random number generation, you need to configure the `HAL` port (optional), you can also do it in other ways.
+		+ If you want to change the random number generation method
+		+ If you don't want the star positions to be randomized
+		+ If you are using a hardware platform that does not have an `ADC` port.
+		+ If you don't want to use the `ADC` port.
+	+ If you don't want to show the `astra UI` startup animation at boot time, please contact the author for the `Pro` version.
++ Two buttons for `Select Previous/Back to Previous` and `Select Next/Confirm`.
+	+ Of course you can customize the way the keys are handled in the `Derived HAL`.
+	+ The `HAL` is mentioned below.
+
+> In the `astra UI` testing phase, I used the `STM32F103CBT6` hardware platform.
+> It has 128 KB of RAM and 72 MHz mains frequency.
+> If your hardware platform is the same as mine, you can directly flash the source code from the repository without additional porting.
+> For more details about the wiring, please refer to the "Example" below.
+#### Supported Screens
+Theoretically, `astra UI` does not restrict the use of the screen resolution, colors, refresh rate, etc.
+
+However, the recommended screen conditions are as follows:
++ Hardware refresh rate greater than 50 frames per second (106 frames per second for `SSD1306`)
++ Screen height (portrait) greater than or equal to 32 pixels
++ Screen height (portrait) greater than or equal to 32 pixels + Screen width (landscape) greater than or equal to 64 pixels
+
+### File Structure
+```BASH
+└─astra-ui-v0-0-2-alpha           # astra UI Main Folder
+    ├─astra                       # UI Folder
+    │  ├─app                      # The app folder will be merged into another project at a later date
+    │  │  ├─astra_app.h         
+    │  │  ├─astra_app_i.h
+    │  │  └─astra_app.cpp
+    │  ├─config                   # Setting Up Folders
+    │  │  └─config.h              # astra UI Settings Parameter Structures
+    │  ├─ui                       # Stores Various Types of Items
+    │  │  ├─element
+    │  │  │  ├─page          
+    │  │  │  │  ├─item.h          # Prototypes For Various Item Classes
+    │  │  │  │  └─item.cpp        # Various Implementations of The Item Class
+    │  │  │  └─widget             # Controls That Will Be Updated in The Next Version
+    │  │  │     ├─widget.h    
+    │  │  │     └─widget.cpp
+    │  │  ├─launcher.h            # astra UI Launcher And Renderer
+    │  │  └─launcher.cpp
+    │  ├─astra_logo.h             
+    │  ├─astra_logo.cpp
+    │  ├─astra_rocket.h           # Responsible for Guiding the Microcontroller Into astra UI
+    │  └─astra_rocket.cpp         # Responsible for Guiding the Microcontroller Into astra UI
+    └─hal                         # Hardware Abstraction Layer Folder
+       ├─hal.h                    # HAL Parent Class
+       └─hal.cpp                  # Stores the Default HAL Class Methods
+```
