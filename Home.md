@@ -11,7 +11,9 @@ Welcome to the oled-ui-astra wiki!
 
 谢谢大家的支持，愿你们玩得开心，有疑问的话，可以参考本Wiki，或者提交 `Issues`，等待你的来信。
 
-dcfsswindy 于 2024.03.31 10:14 北京
+dcfsswindy 2024.03.31 10:14 
+
+于 北京
 
 ---
 The idea of creating this project first came to me three months ago. Inspired by PengZhiHui's `Mono UI` and bilibili@音游玩的人's `Wouo UI`, I decided to make my own `Cpp` based OLED multilevel menu UI which is organized in a more scientific way. from the birth of this idea to now, the repository of `astra UI` has been committed for more than 50 times, and I have been working on it for countless days and nights. Of course, the end result is good, and I have open-sourced my brainchild as promised, so that more people can learn and use it.
@@ -22,7 +24,9 @@ Having said all this, it's slightly pretentious. I just want to record how I fee
 
 Thank you all for your support, may you have fun, and if you have any questions, please refer to this Wiki, or submit `Issues`, waiting for your letter.
 
-dcfsswindy. 2024.03.31 10:14 Beijing
+dcfsswindy. 2024.03.31 10:14
+
+Beijing
 
 ---
 # Wiki 目录 - Wiki Contents
