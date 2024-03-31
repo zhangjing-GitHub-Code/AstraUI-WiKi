@@ -44,7 +44,7 @@ dcfsswindy. 2024.03.31 10:14 Beijing
 		+ `Selector`
 		+ `Launcher`
 	+ 关于 `HAL` - About `HAL`
-+ **移植（部署）教程 - Migration (Deployment) Tutorial**
++ **部署教程 - Deployment Tutorial**
 	+ 编写派生 `HAL` - Write Derived `HAL`
 		+ 继承 `HAL` 类 - Inherit the `HAL` Class
 		+ 链接图形库 *（可选的）* - Link Graphics Library *(optional)*
