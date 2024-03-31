@@ -56,4 +56,5 @@ dcfsswindy. 2024.03.31 10:14 Beijing
 	+ 运行 `HAL` 测试程序 - Run the HAL Test Program
 	+ Have Fun! 
 + 例程 - Example 
-+ 更新计划&更新日志 - Update Program & Update Log
++ 更新计划 - Update Program
++ 更新日志 - Update Log
