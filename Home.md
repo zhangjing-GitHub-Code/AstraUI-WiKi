@@ -19,6 +19,7 @@ The idea of creating this project first came to me three months ago. Inspired by
 I am still a college student, academic performance can not be considered excellent, in fact, can also be said to be relatively bad. Can support me to go to the present, relying on these big and small hobbies in my heart. I like programming, I like to think about electronics, I like to draw circuit boards, I like to arrange music, I like to play the piano and I like photography. I'm often confused about my relationships, my not-so-good academic performance, my future path in life, or my inner answers. But I believe that all these confusions will be answered in the future, possibly by me personally, or of course, by someone precious for me. Of course, I still want to lead my life's journey by myself.
 
 Having said all this, it's slightly pretentious. I just want to record how I feel when this project has reached such a relatively advanced stage of development. Writing `astra UI` has really taught me a lot, and thanks to it, this is the **best** project I've done so far.
+
 Thank you all for your support, may you have fun, and if you have any questions, please refer to this Wiki, or submit `Issues`, waiting for your letter.
 
 dcfsswindy. 2024.03.31 10:14 Beijing
