@@ -34,7 +34,6 @@ Beijing
 	+ 简介 - Synopsis
 	+ 硬件要求 - Hardware Requirements
 	+ 文件结构 - File Structure
-        + 关于 `Launcher` - About `Launcher`
 	+ 关于 `Item` - About `Item`
 		+ 基本概念 - Basic Concept
 		+ `Menu`
@@ -42,6 +41,7 @@ Beijing
 		+ `Camera`
 		+ `Selector`
 		+ `Launcher`
+        + 关于 `Launcher` - About `Launcher`
 	+ 接口 - `APIs`
 		+ `Menu`
 		+ `Widget` *(future)*
