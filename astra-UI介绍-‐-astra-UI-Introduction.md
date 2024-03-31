@@ -81,6 +81,13 @@
        ├─hal.h                    # HAL父类
        └─hal.cpp                  # 存放了缺省的HAL类方法
 ```
+## 关于 `Item`
+
+### 基本概念
+todo
+###  `Menu`
+![menu-tree](https://github.com/dcfsswindy/oled-ui-astra/assets/59963050/82a3f222-345b-435e-a26d-f0e551f423d2)
+
 ---
 
 # English
@@ -170,3 +177,9 @@ However, the recommended screen conditions are as follows:
        ├─hal.h                    # HAL Parent Class
        └─hal.cpp                  # Stores the Default HAL Class Methods
 ```
+## About `Item`
+
+### Basic Concept
+todo
+###  `Menu`
+![menu-tree](https://github.com/dcfsswindy/oled-ui-astra/assets/59963050/82a3f222-345b-435e-a26d-f0e551f423d2)
