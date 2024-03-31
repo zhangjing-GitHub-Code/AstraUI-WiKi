@@ -81,6 +81,9 @@
        ├─hal.h                    # HAL父类
        └─hal.cpp                  # 存放了缺省的HAL类方法
 ```
+
+***若您只是想部署 `astra UI` ，而不是理解它，您可以直接跳过下文，直接阅读“部署教程”。***
+
 ## 关于 `Item`
 
 ### 基本概念
@@ -95,13 +98,61 @@
 
 下面，就来分别讲述每一个元素。
 ###  `Menu`
+#### 概念
 ![menu-tree](https://github.com/dcfsswindy/oled-ui-astra/assets/59963050/82a3f222-345b-435e-a26d-f0e551f423d2)
 
 上图即为 `Menu` 类的组织框架图。`astra UI` 使用 `树` 来进行多级菜单管理，笔者称其为 `菜单树` 。
 
 `菜单树` 的每个节点，都是一个实例化的菜单类。每个菜单类会包含一个前序指针 `*parent` 以及一个后序指针容器 `std::vector<Menu*> child` 。
 
+使用 `树` 来管理多级菜单的好处是，每个节点都是一个独立的菜单，拥有自己独立的坐标值和参数。保证了每个菜单互不干扰，同时极大地简化了编程难度，同时也提高了代码可读性。
 
+可以说，使用 `树` 来管理多级菜单，绝对是一个相当符合直觉的思路。
+
+
+## 关于 `Launcher`
+
+`Launcher` 是 `astra UI` 最为重要的组成部分。
+
+`Launcher` 的作用：
++ 管理
++ 接受用户输入的信息，如按键等
++ 调用当前正在显示的菜单实例的 `render()` 方法，渲染当前菜单
++ 
+
+## 接口 / `APIs`
+### `Menu`
+#### 新建菜单 / 构造函数
+
+新建菜单的函数（即构造函数）是多态的。根据传入的参数不同，创建的菜单也不同。
+
+```Cpp
+explicit Menu(std::string _title);                      //创建列表类 标题为_title
+Menu(std::string _title, std::vector<uint8_t> _pic);    //创建图标类 标题为_title 图标为_pic
+```
+
+通过不同的构造函数创建的菜单，`selfType` 的值会不同，该值表明了这个菜单类实例是列表页还是图标页。
+
+#### `addItem()` 方法
+
+向指定菜单中加入子菜单。
+
+```Cpp
+bool addItem(Menu* _page);
+```
+
+若添加成功，则返回 `True` ，否则返回 `False` 。 
+
+##### 使用示例
+
+```Cpp
+astra::Menu* rootPage = new astra::Menu("root");          //创建一个根菜单
+rootPage->addItem(new astra::Menu("test1"));              //向根菜单中添加一个列表类 标题为"test1"
+//rootPage->addItem(new astra::Menu("test1", pic_0));     //向根菜单中添加一个图标类 标题为"test1" 图标为pic_0
+```
+
+#### `render()` 方法
+用于渲染当前页面。请注意， `render()` 方法本质上是在渲染当前菜单
 
 ---
 
