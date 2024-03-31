@@ -3,7 +3,7 @@ Welcome to the oled-ui-astra wiki!
 ![image](https://github.com/dcfsswindy/oled-ui-astra/assets/59963050/159bd518-976e-4fa5-bb5c-66452e0d698a)
 
 
-# 目录 - Contents
+# Wiki 目录 - Wiki Contents
 + `astra UI` 介绍 - `astra UI` Introduction
 	+ 简介 - Synopsis
 	+ 硬件要求 - Hardware Requirements
