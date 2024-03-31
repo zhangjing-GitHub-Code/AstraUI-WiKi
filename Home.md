@@ -40,7 +40,7 @@ Beijing
 		+ `Widget` *(future)*
 		+ `Camera`
 		+ `Selector`
-        + 关于 `Launcher` - About `Launcher`
+	+ 关于 `Launcher` - About `Launcher`
 	+ 接口 - `APIs`
 		+ `Menu`
 		+ `Widget` *(future)*
