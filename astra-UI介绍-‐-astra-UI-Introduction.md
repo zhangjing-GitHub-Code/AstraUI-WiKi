@@ -303,8 +303,8 @@ for (;;) astraLauncher->update();                           //在主循环中执
 新建菜单的函数（即构造函数）是多态的。根据传入的参数不同，创建的菜单也不同。
 
 ```Cpp
-explicit Menu(std::string _title);                      //创建列表类 标题为_title
-Menu(std::string _title, std::vector<uint8_t> _pic);    //创建图标类 标题为_title 图标为_pic
+explicit Menu(std::string _title);                          //创建列表类 标题为_title
+Menu(std::string _title, std::vector<uint8_t> _pic);        //创建图标类 标题为_title 图标为_pic
 ```
 
 通过不同的构造函数创建的菜单，`selfType` 的值会不同，该值表明了这个菜单类实例是列表页还是图标页。
@@ -322,9 +322,9 @@ bool addItem(Menu* _page);
 ##### 使用示例
 
 ```Cpp
-astra::Menu* rootPage = new astra::Menu("root");          //创建一个根菜单
-rootPage->addItem(new astra::Menu("test1"));              //向根菜单中添加一个列表类 标题为"test1"
-//rootPage->addItem(new astra::Menu("test1", pic_0));     //向根菜单中添加一个图标类 标题为"test1" 图标为pic_0
+astra::Menu* rootPage = new astra::Menu("root");            //创建一个根菜单
+rootPage->addItem(new astra::Menu("test1"));                //向根菜单中添加一个列表类 标题为"test1"
+//rootPage->addItem(new astra::Menu("test1", pic_0));       //向根菜单中添加一个图标类 标题为"test1" 图标为pic_0
 ```
 
 ##### 注意事项
