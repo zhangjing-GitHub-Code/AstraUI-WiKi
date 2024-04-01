@@ -280,6 +280,22 @@
 
 ![CPT2404012129-228x126](https://github.com/dcfsswindy/oled-ui-astra/assets/59963050/a69f44fa-7002-4578-9905-37a5d1886ff8)
 
+### 注意事项
+
+在正常情况下，您只需要在引导程序中手动创建一个 `Launcher` 实例，并将您创建好的 `root` 菜单实例作为参数传入 `Launcher` 的 `init()` 成员函数即可。
+
+下面给出一个示例：
+
+```Cpp
+astra::Launcher* astraLauncher = new astra::Launcher();     //实例化Launcher
+astra::Menu* rootPage = new astra::Menu("root");
+
+rootPage->addItem(new astra::Menu("test1"));
+astraLauncher->init(rootPage);                              //初始化Launcher实体
+
+for (;;) astraLauncher->update();                           //在主循环中执行此句即可开始渲染
+```
+
 ## 接口 / `APIs`
 ### `Menu`
 #### 新建菜单 / 构造函数
