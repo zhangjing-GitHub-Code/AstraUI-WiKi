@@ -121,7 +121,7 @@
 
 **比如** ，您想在某个菜单（假设其名为 `root` ）里显示"test1"、"test2"、"test3"三个选项，只需要先建立菜单 `root` 。然后调用下文中提到的相应方法，将这三个选项（他们也是菜单类）添加进 `root` 即可。在这个例子中，一共出现了四个新建的菜单类，他们分别是 `root`， `test1`， `test2` 和 `test3` 。而后面三个菜单类被添加进了 `root` 类中，成为了 `root` 类后续指针容器 `std::vector<Menu*> child` 中的一员。相应地，`root` 类也成为了后面三个菜单类的前序指针 `*parent` 。
 
-在渲染 `root` 菜单时，`astra UI` 会遍历 **当前菜单（也就是 `root` ）** 的后序指针容器中的所有菜单类（也就是 `test1`， `test2` 和 `test3`），并在相应的位置显示他们。
+在渲染 `root` 菜单时，`astra UI` 会遍历 **当前菜单（也就是 `root` ）** 的后序指针容器中的所有菜单类（也就是 `test1`， `test2` 和 `test3`），并在相应的位置显示他们（每个菜单类中都存储了自身的坐标值，这个坐标就是其在前序菜单中的位置）
 
 至此，`test1`， `test2` 和 `test3` 已经成功显示在了 `root` 菜单中。 
 
@@ -338,7 +338,27 @@ rootPage->addItem(new astra::Menu("test1"));                //向根菜单中添
 + 渲染菜单时，会根据此菜单的 `childType` 进行渲染。
 
 #### `render()` 方法
-用于渲染当前页面。请注意， `render()` 方法本质上是在渲染当前菜单
+
+用于渲染当前页面。
+
+```Cpp
+void render(std::vector<float> _camera);                    //render all child item.
+```
+
+##### 使用示例
+
+```Cpp
+Menu* currentPage;
+Camera* camera;
+
+currentPage->render(camera->getPosition());
+```
+
+其中，`camera->getPosition()` 方法会在下文中有更详尽的介绍。
+
+##### 注意事项
+
+`render()` 方法本质上是在对应位置渲染当前菜单的**所有后继菜单**，详见[菜单的概念](https://github.com/dcfsswindy/oled-ui-astra/wiki/astra-UI%E4%BB%8B%E7%BB%8D-%E2%80%90-astra-UI-Introduction#menu)
 
 ---
 
