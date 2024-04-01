@@ -122,6 +122,16 @@
 
 当然，每个菜单类中还存储了坐标值（也就是该菜单在父级菜单中显示的位置）、选择值（也就是用户选择了当前菜单的哪一项）等等。具体您可查阅 `astra UI` 的源代码。此部分内容出现在 `item.h` 和 `item.cpp` 中。
 
+菜单类有两种形式，在 `childType == Menu::LIST` 和 `childType == Menu::TILE` 时，会呈现不同的形式。
+
+下图为 `childType == Menu::TILE` ，呈现的大图标模式。
+
+![image](https://github.com/dcfsswindy/oled-ui-astra/assets/59963050/61dda18a-125f-4a79-915f-7ad1f609d1ac)
+
+下图为 `childType == Menu::LIST` ，呈现的列表类模式。
+
+![image](https://github.com/dcfsswindy/oled-ui-astra/assets/59963050/e61cc0e4-e689-4de5-8142-363f8e51037b)
+
 ###  `Widget` *(future)*
 
 控件。可以被添加到对应的菜单项中，从而在菜单项的尾部显示。用户可以通过控件来更改某些系统参数的值。
@@ -135,6 +145,14 @@
 + 确认弹窗。用于进行二次确认，可以应用在有风险的选项中，比如“关机”
 
 *`Widget` 将在下个版本进行更新。在做了在做了~*
+
+###  `Selector`
+
+![image](https://github.com/dcfsswindy/oled-ui-astra/assets/59963050/bfa9a4d4-2825-4c1d-b125-9f27ce443e49)
+
+上图中高亮显示在"测试测试测试5"上的就是 `Selector(选择器)` 。
+
+
 
 ## 关于 `Launcher`
 
