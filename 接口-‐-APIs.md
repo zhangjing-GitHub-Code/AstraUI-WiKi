@@ -251,7 +251,80 @@ void update(Menu *_menu, Selector *_selector);
 
 ###  `Selector`
 
-#### todo
+#### 新建 `Selector` / 构造函数
+
+并无特殊处理
+
+```Cpp
+Selector() = default;
+```
+
+####  `getPosition()` 方法
+
+获取 `Selector` 的坐标。
+
+```Cpp
+std::vector<float> getPosition();
+```
+
+##### 返回值
+
+返回 `Selector` 的坐标容器，[参考这里](https://github.com/dcfsswindy/oled-ui-astra/wiki/%E6%8E%A5%E5%8F%A3-%E2%80%90-APIs#getposition-%E6%96%B9%E6%B3%95)。
+
+####  `inject()` 方法
+
+将某个菜单注入 `Selector` ，从而让 `Selector` 可以获取到对应菜单的坐标值、索引值等等。
+
+```Cpp
+bool inject(Menu* _menu); //inject menu instance to prepare for render.
+```
+
+##### 返回值
+
++ 若操作合法，返回 `True` 。
++ 若操作非法，如当前注入的是一个不存在的菜单，返回 `False` 。
+
+####  `destory()` 方法
+
+销毁并释放注入的菜单。
+
+```Cpp
+bool destroy(); //destroy menu instance.
+```
+
+##### 返回值
+
++ 若操作合法，返回 `True` 。
++ 若操作非法，如当前并未注入任何菜单，返回 `False` 。
+
+####  `go()` 方法
+
+将 `Selector` 移动到菜单的指定元素处。
+
+同时更改当前注入了的菜单的 `selectIndex`。
+
+##### 注意事项
+
+`Selector` 移动是有动画的，所以该方法需要放在循环中调用。
+
+```Cpp
+void go(uint8_t _index);
+```
+
+####  `render()` 方法
+
+渲染 `Selector` 到画布。
+
+```Cpp
+void render(std::vector<float> _camera);
+```
+##### 注意事项
+
+因为涉及到渲染，需要在循环内调用。
+
+
+
+
 
 ###  `Launcher`
 
