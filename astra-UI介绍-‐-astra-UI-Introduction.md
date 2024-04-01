@@ -263,10 +263,16 @@
 `Launcher` 是 `astra UI` 最为重要的组成部分。
 
 `Launcher` 的作用：
-+ 管理
-+ 接受用户输入的信息，如按键等
++ 接收并处理用户输入的信息，如按键等
++ 管理和更新 `Selector` 和 `Camera`
++ 管理 `菜单树` 
++ 打开和关闭菜单
++ 渲染系统级弹窗 `popInfo(std::string _info, uint16_t _time)`
 + 调用当前正在显示的菜单实例的 `render()` 方法，渲染当前菜单
-+ 
+
+### 关于系统级弹窗 `popInfo(std::string _info, uint16_t _time)`
+
+
 
 ## 接口 / `APIs`
 ### `Menu`
