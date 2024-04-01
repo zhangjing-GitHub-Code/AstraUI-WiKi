@@ -210,6 +210,27 @@
 
 在正常情况下，与 `Selector` 有关的操作，应该只在 `Launcher` 中出现。`Selector` 属于系统级组件，用户不需要主动管理。
 
+###  `Camera`
+
+#### 基本概念
+
+在 `astra UI` 中， `Camera` 会作为所有渲染函数的参数。用于控制渲染函数渲染对应元素的坐标原点。实现控制视角范围的效果。
+
+在此之前，我们先介绍一个新的概念， `前景(Foreground) ` 和 `背景(Background)` 。
+
+![image](https://github.com/dcfsswindy/oled-ui-astra/assets/59963050/8781fff0-3f0c-40f6-9123-044d6cffe382)
+
+如图所示，`前景`表示那些无论页面怎么移动，都不会改变在视线中位置的元素，而 `背景` 表示那些会被视角的改变而影响，会随着页面滚动而滚动的元素。
+
+在概念抽象层面，我们可以理解为，无论页面怎么滚动，视角怎么切换，各种处于 `背景` 的 `Items` 的位置都是不变的，变化的只有 `Camera` 的坐标。
+
+![image](https://github.com/dcfsswindy/oled-ui-astra/assets/59963050/eb49f445-0e87-4d69-bf8c-f1eb55f8aba7)
+
+但是在实际的程序层面，所有处于 `背景` 的 `Items` ，在渲染时其坐标都会加上 `Camera` 的坐标。 `Camera` 的坐标确定了其渲染的参考系和坐标原点，如图所示。
+
+![image](https://github.com/dcfsswindy/oled-ui-astra/assets/59963050/ba913203-0444-4e5a-a372-563402807253)
+
+
 
 ## 关于 `Launcher`
 
