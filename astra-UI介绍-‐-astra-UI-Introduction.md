@@ -251,7 +251,7 @@
 
 ###### `goToListItemPage()` 整页滚动
 
-
+todo
 
 ###### `goToListItemRolling()` 单项滚动
 
@@ -458,6 +458,41 @@ std::vector<float> getPosition();
 其中， `getPosition()[0]` 代表 `Camera` 的 `x` 坐标。
 
 同理， `getPosition()[1]` 代表 `Camera` 的 `y` 坐标。
+
+####  `go()` 及其一系列方法
+
+用于将 `Camera` 移动到指定的位置。共有四个移动函数。
+
+```Cpp
+void go(float _x, float _y);                                //将Camera移动至(_x, _y) 并渲染平滑的移动动画
+void goDirect(float _x, float _y);                          //直接移动 不渲染动画
+void goHorizontal(float _x);                                //水平移动 不改变纵坐标
+void goVertical(float _y);                                  //垂直移动 不改变横坐标
+```
+
+##### 注意事项
+
+由于需要渲染动画，而动画的渲染并非一瞬间可以完成的，所以只有 `goDirect()` 可以在循环外执行，其余三个方法都必须在循环内执行。
+
+同时，笔者也建议（或者说是您应该）在诸如初始化这样的仅执行一次的方法中，使用 `goDirect()` 方法对 `Camera` 进行移动，而不是其余三个方法。
+
+#### 页面滚动方法
+
+包含五个方法，它们用于在元素溢出视野后，对 `Camera` 进行移动。
+
+```Cpp
+void goToNextPageItem();                                    //将Camera移动到下一页 用于列表类整页滚动
+void goToPreviewPageItem();                                 //将Camera移动到上一页 用于列表类整页滚动
+void goToListItemPage(uint8_t _index);                      //将Camera移动到指定的页面 用于列表类整页滚动
+void goToListItemRolling(std::vector<float> _posSelector);  //将Camera滚动一行或多行 用于列表类单行滚动
+void goToTileItem(uint8_t _index);                          //将Camera移动到指定的元素 用于图标页居中显示选择项
+```
+
+##### 注意事项
+
+确保您当前菜单的 `childType` 与上方注释中方法的适用页面类型一致，否则会产生意想不到的错误。
+
+此隐患可能会在未来版本中进行规避。
 
 ---
 
