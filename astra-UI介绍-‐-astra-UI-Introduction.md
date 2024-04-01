@@ -198,7 +198,7 @@
 
 ![CPT2404011133-228x120](https://github.com/dcfsswindy/oled-ui-astra/assets/59963050/dc854c1b-d2c2-4a77-8edb-79a63802f291)
 
-![CPT2404011116-228x122](https://github.com/dcfsswindy/oled-ui-astra/assets/59963050/0b512c42-97d5-4205-bd45-8c5b69b45476)
+![CPT2404011136-228x122](https://github.com/dcfsswindy/oled-ui-astra/assets/59963050/8ec05741-02be-4d81-989e-25716f45ff26)
 
 分别是在图标类中，选择器快速和慢速滚动的动画效果。
 
