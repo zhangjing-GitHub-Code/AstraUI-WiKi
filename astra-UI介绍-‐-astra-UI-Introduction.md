@@ -194,11 +194,19 @@
 
 分别是从列表类进入图标类和从图标类进入列表类的过渡动画。
 
-##### 页面滚动动画
+##### 滚动动画
 
+![CPT2404011133-228x120](https://github.com/dcfsswindy/oled-ui-astra/assets/59963050/dc854c1b-d2c2-4a77-8edb-79a63802f291)
 
+![CPT2404011116-228x122](https://github.com/dcfsswindy/oled-ui-astra/assets/59963050/0b512c42-97d5-4205-bd45-8c5b69b45476)
 
+分别是在图标类中，选择器快速和慢速滚动的动画效果。
 
+![CPT2404011142-228x127](https://github.com/dcfsswindy/oled-ui-astra/assets/59963050/00a6ab62-27c8-4b9d-9d87-768253d7c8bc)
+
+是在列表类中，选择器快速和慢速滚动的动画效果。
+
+#### 注意事项
 
 在正常情况下，与 `Selector` 有关的操作，应该只在 `Launcher` 中出现。`Selector` 属于系统级组件，用户不需要主动管理。
 
