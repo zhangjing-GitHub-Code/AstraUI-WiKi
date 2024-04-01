@@ -132,6 +132,14 @@
 
 ![image](https://github.com/dcfsswindy/oled-ui-astra/assets/59963050/e61cc0e4-e689-4de5-8142-363f8e51037b)
 
+在菜单被初始化时，您可以根据自己的喜好和需求决定是否让所有选项从头展开，如下图。
+
+![CPT2404011121-228x123](https://github.com/dcfsswindy/oled-ui-astra/assets/59963050/e7bdd466-0c21-4544-96c6-cb9a9d582791)
+
+![CPT2404011116-228x122](https://github.com/dcfsswindy/oled-ui-astra/assets/59963050/b482efbf-159f-4f4d-8913-b989a556797c)
+
+分别是图标类和列表类的展开动画。
+
 ###  `Widget` *(future)*
 
 控件。可以被添加到对应的菜单项中，从而在菜单项的尾部显示。用户可以通过控件来更改某些系统参数的值。
@@ -152,6 +160,23 @@
 
 上图中高亮显示在"测试测试测试5"上的就是 `Selector(选择器)` 。
 
+选择器在两种菜单模式下有两种不同的形式，当处在列表类时，外观如上图。
+
+当处在大图标类时，外观如下图。
+
+![image](https://github.com/dcfsswindy/oled-ui-astra/assets/59963050/be6538c9-2ba2-4dc0-8748-2d52a05d506c)
+
+围绕在屏幕中间图标的四个"L"型边框，以及页面下方的标题显示，都是 `Selector` 的一部分。
+
+`Selector` 承担如下作用：
++ 高亮显示当前选择的项
++ 更改当前菜单中选择的项（即改变菜单 `selectIndex` 的值）
+
+另外，在两个不同类型页面进行切换时， `Selector` 会绘制过渡动画，如下图。
+
+![CPT2404011116-228x122](https://github.com/dcfsswindy/oled-ui-astra/assets/59963050/3832eef8-3336-427a-adfc-fa953c637584)
+
+在正常情况下，与 `Selector` 有关的操作，应该只在 `Launcher` 中出现。`Selector` 属于系统级组件，用户不需要主动管理。
 
 
 ## 关于 `Launcher`
