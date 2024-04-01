@@ -525,6 +525,32 @@ bool isMoving();
 + 当 `Camera` 正在移动，返回 `True` 。
 + 当 `Camera` 未在移动，返回 `False` 。
 
+####  `reset()` 方法
+
+将 `Camera` 移动回[初始位置](https://github.com/dcfsswindy/oled-ui-astra/wiki/astra-UI%E4%BB%8B%E7%BB%8D-%E2%80%90-astra-UI-Introduction#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9-6)。
+
+```Cpp
+void reset();
+```
+
+####  `update()` 方法
+
+接管一切关于 `Camera` 的移动。同时更新 `Camera` 的位置。
+
+所以，用户无需主动执行上述移动 `Camera` 的相关方法，由 `update()` 方法进行托管即可。
+
+```Cpp
+void update(Menu *_menu, Selector *_selector);
+```
+
+##### 注意事项
+
+需放在循环内执行。
+
+###  `Launcher`
+
+#### 
+
 ---
 
 # English
