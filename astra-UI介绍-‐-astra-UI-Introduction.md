@@ -376,6 +376,38 @@ currentPage->render(camera->getPosition());
 
 `render()` 方法本质上是在对应位置渲染当前菜单的**所有后继菜单**，详见[菜单的概念](https://github.com/dcfsswindy/oled-ui-astra/wiki/astra-UI%E4%BB%8B%E7%BB%8D-%E2%80%90-astra-UI-Introduction#menu)
 
+####  `getItemNum()` 方法
+
+返回获取指定菜单包含的子元素个数。
+
+```Cpp
+[[nodiscard]] uint8_t getItemNum() const;
+```
+
+####  `getItemPosition()` 方法
+
+返回指定菜单中指定索引的元素位置。
+
+```Cpp
+[[nodiscard]] Position getItemPosition(uint8_t _index) const;
+```
+
+####  `getNext()` 方法
+
+返回指定菜单的正在选择的子元素指针。
+
+```Cpp
+[[nodiscard]] Menu* getNext() const;
+```
+
+####  `getPreview()` 方法
+
+返回指定菜单的前序菜单指针。
+
+```Cpp
+[[nodiscard]] Menu* getPreview() const;
+```
+
 ---
 
 # English
