@@ -312,6 +312,22 @@ Menu(std::string _title, std::vector<uint8_t> _pic);        //创建图标类 �
 
 通过不同的构造函数创建的菜单，`selfType` 的值会不同，该值表明了这个菜单类实例是列表页还是图标页。
 
+#### `init()` 方法和 `deInit()` 方法
+
+初始化/逆初始化指定菜单。
+
+初始化方法会根据 `Camera` 当前的位置以及配置文件，确定各个元素的位置。同时执行进场动画（注意，非过渡动画）。
+逆初始化方法会执行退场动画。
+
+```Cpp
+void init(std::vector<float> _camera);
+void deInit();
+```
+
+##### 注意事项
+
+执行 `init()` 方法是必须的、不可省略的过程。但是通常情况下我们无需主动执行此方法，因为在下文会提到的 `Launcher::open()` 、 `Launcher::close()` 以及 `Launcher::init()` 方法中，都调用了对应菜单的 `init()` 方法。
+
 #### `addItem()` 方法
 
 向指定菜单中加入子菜单。
