@@ -236,7 +236,27 @@
 
 ##### 视角转移动画
 
+![CPT2404011116-228x122](https://github.com/dcfsswindy/oled-ui-astra/assets/59963050/9520f440-46a3-4be8-84c6-63e0e47f04bb)
+
+`Camera` 的视角转移与页面类型无关。这里拿图标类做演示。如上图所示，`Camera` 从图标类的最后一个元素移动到了第一个元素。
+
 ##### 页面滚动动画
+
+在图标类中， `Camera` 将永远**追随**当前选择的元素（注意，追随并不意味着位置时刻相等， `Camera` 的移动速度应慢于 `Selector` ）
+
+在列表类中，当 `Camera` 检测到当前选择项超出视野，则会触发页面滚动，有两种滚动方式。
+
+###### `goToListItemPage()` 整页滚动
+
+
+
+###### `goToListItemRolling()` 单项滚动
+
+![CPT2404011210-228x122](https://github.com/dcfsswindy/oled-ui-astra/assets/59963050/08e2c2e8-7b29-42d9-a4f1-3fa0a103132e)
+
+#### 注意事项
+
+在正常情况下，与 `Camera` 有关的操作，应该只在 `Launcher` 中出现。`Camera` 属于系统级组件，用户不需要主动管理。
 
 ## 关于 `Launcher`
 
