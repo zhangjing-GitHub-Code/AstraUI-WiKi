@@ -87,6 +87,10 @@
 ## 关于 `Item`
 
 ### 基本概念
+
+![image](https://github.com/dcfsswindy/oled-ui-astra/assets/59963050/8303724e-a0c0-4699-8371-411fbd45d6f3)
+
+
 如前文中所述， `astra UI` 内含很多 `Item` ，包括：
 + 用户层元素
 	+ 列表类菜单 `List` ：纵向的列表类型菜单，与下方的 `Tile` 同属于 `Class Menu`
