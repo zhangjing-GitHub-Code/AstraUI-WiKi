@@ -336,7 +336,10 @@ void deInit();
 bool addItem(Menu* _page);
 ```
 
-若添加成功，则返回 `True` ，否则返回 `False` 。 
+##### 返回值
+
++ 若添加成功，返回 `True` 。
++ 若添加失败，返回 `False` 。 
 
 ##### 使用示例
 
@@ -378,35 +381,51 @@ currentPage->render(camera->getPosition());
 
 ####  `getItemNum()` 方法
 
-返回获取指定菜单包含的子元素个数。
+获取指定菜单包含的子元素个数。
 
 ```Cpp
 [[nodiscard]] uint8_t getItemNum() const;
 ```
 
+##### 返回值
+
+返回指定菜单包含的子元素个数。
+
 ####  `getItemPosition()` 方法
 
-返回指定菜单中指定索引的元素位置。
+获取指定菜单中指定索引的元素位置。
 
 ```Cpp
 [[nodiscard]] Position getItemPosition(uint8_t _index) const;
 ```
 
+##### 返回值
+
+返回指定菜单中指定索引的元素位置。
+
 ####  `getNext()` 方法
 
-返回指定菜单的正在选择的子元素指针。
+获取指定菜单的正在选择的子元素指针。
 
 ```Cpp
 [[nodiscard]] Menu* getNext() const;
 ```
 
+##### 返回值
+
+返回指定菜单的正在选择的子元素指针。
+
 ####  `getPreview()` 方法
 
-返回指定菜单的前序菜单指针。
+获取指定菜单的前序菜单指针。
 
 ```Cpp
 [[nodiscard]] Menu* getPreview() const;
 ```
+
+##### 返回值
+
+返回指定菜单的前序菜单指针。
 
 ###  `Widget`
 
@@ -493,6 +512,18 @@ void goToTileItem(uint8_t _index);                          //将Camera移动到
 确保您当前菜单的 `childType` 与上方注释中方法的适用页面类型一致，否则会产生意想不到的错误。
 
 此隐患可能会在未来版本中进行规避。
+
+####  `isMoving()` 方法
+
+判断并返回 `Camera` 当前的状态。
+
+```Cpp
+bool isMoving();
+```
+
+##### 返回值
++ 当 `Camera` 正在移动，返回 `True` 。
++ 当 `Camera` 未在移动，返回 `False` 。
 
 ---
 
