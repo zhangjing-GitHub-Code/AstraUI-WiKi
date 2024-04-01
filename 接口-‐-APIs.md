@@ -249,9 +249,103 @@ void update(Menu *_menu, Selector *_selector);
 
 需放在循环内执行。
 
-###  `Launcher`
+###  `Selector`
 
 #### todo
+
+###  `Launcher`
+
+#### 新建 `Launcher` / 构造函数
+
+并无特殊处理。
+
+```Cpp
+Launcher() = default;
+```
+####  `popInfo()` 方法
+
+系统级弹窗。
+
+```Cpp
+void popInfo(std::string _info, uint16_t _time);
+```
+
+####  `init()` 方法
+
+初始化方法，用于初始化 `Launcher` 。
+
+执行此方法后， `Launcher` 就根据您传入的 `根菜单` 创建了一个新的 `菜单树` 。
+
+```Cpp
+void init(Menu* _rootPage);
+```
+
+##### 使用示例
+
+```Cpp
+astra::Launcher* astraLauncher = new astra::Launcher();
+astra::Menu* rootPage = new astra::Menu("root");
+
+astraLauncher->init(rootPage);
+```
+
+##### 注意事项
+
+注意，此方法需要用户主动在代码的初始化阶段执行。
+
+####  `open()` 方法
+
+打开 `Launcher` 的 `当前页面指针` 的 `selectIndex(当前选择项)` 对应的子菜单。
+
+比如当前处在 `根菜单` ，并且选择了 `根菜单` 的第二项，那么执行此方法便会打开 `根菜单` 的第二个子菜单。同时移动 `当前页面指针` 到新的页面。
+
+```Cpp
+bool open();
+``` 
+
+##### 执行步骤
++ 判断操作是否合法，若不合法弹出错误弹窗。
++ 调用旧菜单的 `deInit()` 方法。
++ 移动 `当前页面指针` 到新的页面。
++ 调用新菜单的 `init()` 方法。
++ 调用 `Selector` 的 `inject()` 方法，将选择器注入新菜单。
+
+##### 返回值
++ 操作非法，返回 `False`。
++ 操作合法，返回 `True`。
+
+##### 注意事项
+
+若您尝试打开一个空的菜单，在默认情况下， `Launcher` 会弹出内容为"empty page!"的系统级弹窗。同时，各种指针将不会被移动。
+
+若您尝试打开一个不存在的菜单，在默认情况下， `Launcher` 会弹出内容为"unreferenced page!"的系统级弹窗。同时，各种指针将不会被移动。
+
+####  `close()` 方法
+
+关闭当前页面，返回当前页面的前序页面。
+
+同时移动 `Launcher` 的 `当前页面指针` 到新的页面。
+
+```Cpp
+bool close();
+``` 
+
+##### 执行步骤
++ 判断操作是否合法，若不合法弹出错误弹窗。
++ 调用旧菜单的 `deInit()` 方法。
++ 移动 `当前页面指针` 到新的页面。
++ 调用新菜单的 `init()` 方法。
++ 调用 `Selector` 的 `inject()` 方法，将选择器注入新菜单。
+
+##### 返回值
++ 操作非法，返回 `False`。
++ 操作合法，返回 `True`。
+
+##### 注意事项
+
+若您尝试回到一个空的菜单，在默认情况下， `Launcher` 会弹出内容为"empty page!"的系统级弹窗。同时，各种指针将不会被移动。
+
+若您尝试回到一个不存在的菜单，在默认情况下， `Launcher` 会弹出内容为"unreferenced page!"的系统级弹窗。同时，各种指针将不会被移动。
 
 # English
 ***或者 [简体中文](#简体中文)***
