@@ -176,6 +176,14 @@
 
 ![CPT2404011116-228x122](https://github.com/dcfsswindy/oled-ui-astra/assets/59963050/3832eef8-3336-427a-adfc-fa953c637584)
 
+![CPT2404011125-228x122](https://github.com/dcfsswindy/oled-ui-astra/assets/59963050/5a5e6c8f-611b-4ac7-9773-ac5bf1428acc)
+
+分别是从列表类进入图标类和从图标类进入列表类的过渡动画。
+
+
+
+
+
 在正常情况下，与 `Selector` 有关的操作，应该只在 `Launcher` 中出现。`Selector` 属于系统级组件，用户不需要主动管理。
 
 
