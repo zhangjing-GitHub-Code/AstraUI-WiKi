@@ -429,6 +429,36 @@ Camera(float _x, float _y);                                 //创建一个Camera
 
 初始坐标存储于Camera实例内部。
 
+####  `outOfView()` 方法
+
+用于判断某个给定点是否位于视野之外。
+
+```Cpp
+uint8_t outOfView(float _x, float _y);
+```
+
+##### 返回值
+
++ 当指定坐标位于视野内时，返回 `0`
++ 当指定坐标位于视野上方或左侧时，返回 `1`
++ 当指定坐标位于视野下方或右侧时，返回 `2`
+
+####  `getPosition()` 方法
+
+`Camera` 最重要的一个方法，返回 `Camera` 当前的坐标。
+
+```Cpp
+std::vector<float> getPosition();
+```
+
+##### 返回值
+
+返回 `Camera` 当前的坐标容器 `{x, y}` 。
+
+其中， `getPosition()[0]` 代表 `Camera` 的 `x` 坐标。
+
+同理， `getPosition()[1]` 代表 `Camera` 的 `y` 坐标。
+
 ---
 
 # English
