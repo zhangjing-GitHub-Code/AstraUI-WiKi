@@ -41,13 +41,8 @@ Beijing
 		+ `Camera`
 		+ `Selector`
 	+ 关于 `Launcher` - About `Launcher`
-	+ 接口 - `APIs`
-		+ `Menu`
-		+ `Widget` *(future)*
-		+ `Camera`
-		+ `Selector`
-		+ `Launcher`
-	+ 关于 `HAL` - About `HAL`
++ 接口 - `APIs`
++ 关于 `HAL` - About `HAL`
 + **部署教程 - Deployment Tutorial**
 	+ 编写派生 `HAL` - Write Derived `HAL`
 		+ 继承 `HAL` 类 - Inherit the `HAL` Class
