@@ -272,7 +272,13 @@
 
 ### 关于系统级弹窗 `popInfo(std::string _info, uint16_t _time)`
 
+是优先级最高的渲染操作，即可以无视UI渲染，直接渲染于UI图层上方。
 
+可以用于弹出错误信息和提示信息。
+
+效果如下图：
+
+![CPT2404012129-228x126](https://github.com/dcfsswindy/oled-ui-astra/assets/59963050/a69f44fa-7002-4578-9905-37a5d1886ff8)
 
 ## 接口 / `APIs`
 ### `Menu`
