@@ -7,6 +7,11 @@
 
 * [astra UI 介绍](https://github.com/dcfsswindy/oled-ui-astra/wiki/astra-UI%E4%BB%8B%E7%BB%8D-%E2%80%90-astra-UI-Introduction#%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
 * [astra UI Introductoon](https://github.com/dcfsswindy/oled-ui-astra/wiki/astra-UI%E4%BB%8B%E7%BB%8D-%E2%80%90-astra-UI-Introduction#English)
+
+## APIs
+
+* [接口](https://github.com/dcfsswindy/oled-ui-astra/wiki/%E6%8E%A5%E5%8F%A3-%E2%80%90-APIs#%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
+* [APIs](https://github.com/dcfsswindy/oled-ui-astra/wiki/%E6%8E%A5%E5%8F%A3-%E2%80%90-APIs#English)
    
 ## Migration Guide
 
