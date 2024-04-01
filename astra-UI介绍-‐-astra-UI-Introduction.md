@@ -408,6 +408,27 @@ currentPage->render(camera->getPosition());
 [[nodiscard]] Menu* getPreview() const;
 ```
 
+###  `Widget`
+
+*(future)*
+
+###  `Camera`
+
+#### 新建 `Camera` / 构造函数
+
+`Camera` 的构造函数是多态的，根据传入的参数不同，会创建不同的 `Camera` 。
+
+```Cpp
+Camera();                                                   //创建一个Camera实体 位置在(0, 0)
+Camera(float _x, float _y);                                 //创建一个Camera实体 位置在(_x, _y)
+```
+
+##### 注意事项
+
+在创建Camera时，若未给出坐标， `(0, 0)` 即是其初始坐标，若给出了坐标值，初始坐标就等于给定的坐标值。
+
+初始坐标存储于Camera实例内部。
+
 ---
 
 # English
