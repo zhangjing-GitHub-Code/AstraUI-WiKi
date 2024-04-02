@@ -116,10 +116,87 @@ class MyHAL : public HAL {
 public:
   MyHAL() = default;
 };
+
+#endif
 ```
 
-#### 编写 `MyHAL` 的 `_xx_init()` 和 `init` 方法
+#### 编写 `MyHAL` 的 `_xx_init()` 方法并重写 `init` 方法
 
+这一步是因人而异的，取决于您的硬件平台和您接入的各种设备。
+
+`_xx_init()` 方法仅存在于您的派生 `HAL` 中，并应该在您派生类的 `init()` 方法中调用。
+
+其用于初始化您的所有个性化设备。
+
+请注意，如果您需要加入图形库（笔者也推荐您这么做），请同时也在 `MyHAL.h` 中包含您图形库的 `.h` 文件，并为其编写 `xx_init()` 方法。
+
+下面以笔者使用的 `STM32` 和 `u8g2` 图形库为例，给出一段代码：
+
+```Cpp
+//MyHAL.h
+
+class MyHAL : public HAL {
+private:
+  void _stm32_hal_init();
+  void _sys_clock_init();
+  void _gpio_init();
+  void _dma_init();
+  void _timer_init();
+  void _spi_init();
+  void _adc_init();
+
+  void _ssd1306_init();
+  void _key_init();
+  void _buzzer_init();
+  void _u8g2_init();
+
+public:
+  inline void init() override {
+    _stm32_hal_init();
+    _sys_clock_init();
+    _gpio_init();
+    _dma_init();
+    _timer_init();
+    _spi_init();
+    _adc_init();
+
+    _ssd1306_init();
+    _key_init();
+    _buzzer_init();
+    _u8g2_init();
+  }
+};
+```
+
+再给出上面某些函数的实现，供您参考：
+
+```Cpp
+//MyHAL_STM32.cpp
+
+void MyHAL::_gpio_init() {
+  MX_GPIO_Init();
+}
+
+void MyHAL::_adc_init() {
+  MX_ADC1_Init();
+}
+
+void MyHAL::_spi_init() {
+  MX_SPI2_Init();
+}
+```
+
+请注意，这些方法的实现需要在 `MyHAL.cpp` 文件中编写，当然，笔者建议您把不同种类的设备放在不同的 `.cpp` 文件中。
+
+如 `MyHAL_key.cpp` 、 `MyHAL_oled.cpp` 和 `MyHAL_STM32.cpp` 等。
+
+#### 重写其他方法
+
+
+
+#### 注意事项
+
+在编写 `MyHAL` 的过程中，如果需要额外的自定义函数，请直接在 `MyHAL` 类中声明 `protected` 类型的成员函数。
 
 # English
 ***或者 [简体中文](#简体中文)***
