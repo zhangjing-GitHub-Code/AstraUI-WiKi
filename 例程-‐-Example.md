@@ -17,7 +17,7 @@
 + Key: 
 	+ Key 0 -> PA6
 	+ Key 1 -> PA7
-+ OLED 
++ OLED:
 	+ IC型号: SSD1306
 	+ 分辨率: 128 * 64
 		+ 水平 128 Pixels 
@@ -46,15 +46,15 @@ In the following, I will introduce the code matching hardware platform.
 ## Author's hardware configuration
 
 + MCU: STM32F103CBT6
-+ Key. 
++ Key: 
 	+ Key 0 -> PA6
 	+ Key 1 -> PA7
-+ OLED 
++ OLED: 
 	+ IC Model: SSD1306
 	+ Resolution: 128 * 64
 		+ Horizontal 128 Pixels 
 		+ Vertical 64 Pixels
-	+ Hardware SPI + DMA. 
+	+ Hardware SPI + DMA: 
 		+ SCK -> PB13
 		+ MOSI -> PB15
 		+ CS -> PA2
