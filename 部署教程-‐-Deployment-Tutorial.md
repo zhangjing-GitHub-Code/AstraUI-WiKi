@@ -124,6 +124,8 @@ public:
 
 这一步是因人而异的，取决于您的硬件平台和您接入的各种设备。
 
+`init()` 方法会在您调用 `HAL::inject()` 方法时自动被调用。
+
 `_xx_init()` 方法仅存在于您的派生 `HAL` 中，并应该在您派生类的 `init()` 方法中调用。
 
 其用于初始化您的所有个性化设备。
@@ -287,6 +289,16 @@ void HALDreamCore::_drawVDottedLine(float _x, float _y, float _h) {
 #### 注意事项
 
 在编写 `MyHAL` 的过程中，如果需要额外的自定义函数，请直接在 `MyHAL` 类中声明 `protected` 类型的成员函数。
+
+至此，派生 `HAL` 编写完成。
+
+### 第二步：注入派生 `HAL`
+
+在您的引导程序的初始化部分，编写如下代码（笔者假设您已经包含了 `MyHAL.h` ）：
+
+```Cpp
+HAL::inject(new MyHAL);
+```
 
 # English
 ***或者 [简体中文](#简体中文)***
