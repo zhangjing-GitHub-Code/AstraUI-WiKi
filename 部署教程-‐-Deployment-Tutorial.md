@@ -424,4 +424,277 @@ In each group, the static member function's task is to call the `get()` method t
 
 Here is the implementation of the `inject()` method, which is used to inject the derived `HAL` back into the `HAL` . and stores the derived `HAL` pointer in `HAL` .
 
+```Cpp
+bool HAL::inject(HAL *_hal) {
+  if (_hal == nullptr) {
+    return false;
+  }
+
+  _hal->init();
+  hal = _hal;
+  return true;
+}
+```
+
+So it's easy to see that there are three things you need to do:
+
+1. Inherit this `HAL` class and write your own hardware platform derived `HAL`
+2. rewrite all the virtual functions you need to use in the derived `HAL`
+3. inject your derived `HAL` back into `HAL` via `inject()` method
+
+In the following, I will take you step by step to deploy `astra UI` to your hardware platform with more detailed description.
+
+### The first step: writing the derived `HAL`
+
+#### Writing the Framework
+
+First you need to include the `hal.h` header file in your `.h` file.
+
+Inherit and write a derived `HAL`, and give your derived `HAL` a name, here `MyHAL` for example, hereinafter all use `MyHAL` to refer to the derived `HAL` .
+
+Incidentally, write a default constructor. ^_^
+
+```Cpp
+//MyHAL.h
+
+#pragma once
+#ifndef MYHAL_H_
+#define MYHAL_H_
+
+#include "hal.h"
+
+class MyHAL : public HAL {
+public:
+  MyHAL() = default;
+};
+
+#endif
+```
+
+#### Write the `_xx_init()` method of `MyHAL` and override the `init` method
+
+This step varies from person to person, depending on your hardware platform and the various devices you have access to.
+
+The `init()` method is automatically called when you call the `HAL::inject()` method.
+
+The `_xx_init()` method exists only in your derived `HAL` and should be called in the `init()` method of your derived class.
+
+It is used to initialize all your personalization devices.
+
+Please note that if you need to include a graphics library (and I recommend you do), please also include the `.h` file for your graphics library in `MyHAL.h` and write the `xx_init()` method for it.
+
+The following code is an example of the `STM32` and `u8g2` graphics libraries that I use:
+
+```Cpp
+//MyHAL.h
+
+class MyHAL : public HAL {
+private:
+  void _stm32_hal_init();
+  void _sys_clock_init();
+  void _gpio_init();
+  void _dma_init();
+  void _timer_init();
+  void _spi_init();
+  void _adc_init();
+
+  void _ssd1306_init();
+  void _key_init();
+  void _buzzer_init();
+  void _u8g2_init();
+
+public:
+  inline void init() override {
+    _stm32_hal_init();
+    _sys_clock_init();
+    _gpio_init();
+    _dma_init();
+    _timer_init();
+    _spi_init();
+    _adc_init();
+
+    _ssd1306_init();
+    _key_init();
+    _buzzer_init();
+    _u8g2_init();
+  }
+};
+```
+
+The implementation of some of the above functions is given again for your reference:
+
+```Cpp
+//MyHAL_STM32.cpp
+
+void MyHAL::_gpio_init() {
+  MX_GPIO_Init();
+}
+
+void MyHAL::_adc_init() {
+  MX_ADC1_Init();
+}
+
+void MyHAL::_spi_init() {
+  MX_SPI2_Init();
+}
+```
+
+Please note that the implementation of these methods needs to be written in the `MyHAL.cpp` file, but of course, I recommend that you put different kinds of devices in different `.cpp` files.
+
+Of course, I recommend you to put different kinds of devices in different `.cpp` files, such as `MyHAL_key.cpp` , `MyHAL_oled.cpp` and `MyHAL_STM32.cpp` .
+
+#### Rewriting other methods
+
+Next comes the heavy lifting.
+
+Depending on your graphics library of choice (or without the aid of a graphics library), You need to **override** draw pixels, draw lines, draw rectangles, and a host of other methods.
+
+You need to **override** the methods for refreshing the canvas, clearing the screen, etc., depending on your screen.
+
+You need to **override** a series of methods such as delay, get boot time, generate true random number, etc. according to your hardware platform.
+
+According to your peripheral type, you need to rewrite a series of methods such as buzzer sound, key scanning and so on.
+
+Of course, if you are clear about your needs, you can choose not to rewrite some methods and use the default method implementations in the `HAL` parent class.
+
+For example, if you don't need to generate true random numbers, you don't need to override the `_getRandomSeed()` method, or just have it return a fixed value.
+
+For example, if you don't need or have a buzzer, you don't need to rewrite `_beep()` and its set of methods.
+
+For reference, here are all the functions that I have rewritten. For a complete list of functions that can be rewritten, see `hal.h` .
+
+```Cpp
+//MyHAL.h
+
+class MyHAL : public HAL {
+protected:
+  u8g2_t canvasBuffer {};
+
+public:
+  void _screenOn() override;
+  void _screenOff() override;
+
+public:
+  void* _getCanvasBuffer() override;
+  uint8_t _getBufferTileHeight() override;
+  uint8_t _getBufferTileWidth() override;
+  void _canvasUpdate() override;
+  void _canvasClear() override;
+  void _setFont(const uint8_t * _font) override;
+  uint8_t _getFontWidth(std::string& _text) override;
+  uint8_t _getFontHeight() override;
+  void _setDrawType(uint8_t _type) override;
+  void _drawPixel(float _x, float _y) override;
+  void _drawEnglish(float _x, float _y, const std::string& _text) override;
+  void _drawChinese(float _x, float _y, const std::string& _text) override;
+  void _drawVDottedLine(float _x, float _y, float _h) override;
+  void _drawHDottedLine(float _x, float _y, float _l) override;
+  void _drawVLine(float _x, float _y, float _h) override;
+  void _drawHLine(float _x, float _y, float _l) override;
+  void _drawBMP(float _x, float _y, float _w, float _h, const uint8_t* _bitMap) override;
+  void _drawBox(float _x, float _y, float _w, float _h) override;
+  void _drawRBox(float _x, float _y, float _w, float _h, float _r) override;
+  void _drawFrame(float _x, float _y, float _w, float _h) override;
+  void _drawRFrame(float _x, float _y, float _w, float _h, float _r) override;
+
+public:
+  void _delay(unsigned long _mill) override;
+  unsigned long _millis() override;
+  unsigned long _getTick() override;
+  unsigned long _getRandomSeed() override;
+
+public:
+  void _beep(float _freq) override;
+  void _beepStop() override;
+  void _setBeepVol(uint8_t _vol) override;
+
+public:
+  bool _getKey(key::KEY_INDEX _keyIndex) override;
+
+public:
+  void _updateConfig() override;
+};
+```
+
+Meanwhile, a rewritten function implementation code is given below as an example of the `STM32` and `u8g2` graphic libraries used by the author:
+
+```Cpp
+//MyHAL_oled.cpp
+
+void HALDreamCore::_drawPixel(float _x, float _y) {
+  u8g2_DrawPixel(&canvasBuffer, (int16_t)std::round(_x), (int16_t)std::round(_y));
+}
+
+void HALDreamCore::_drawChinese(float _x, float _y, const std::string &_text) {
+  u8g2_DrawUTF8(&canvasBuffer, (int16_t)std::round(_x), (int16_t)std::round(_y), _text.c_str());
+}
+
+void HALDreamCore::_drawVDottedLine(float _x, float _y, float _h) {
+  for (uint8_t i = 0; i < (uint8_t)std::round(_h); i++) {
+    if (i % 8 == 0 | (i - 1) % 8 == 0 | (i - 2) % 8 == 0) continue;
+    u8g2_DrawPixel(&canvasBuffer, (int16_t)std::round(_x), (int16_t)std::round(_y) + i);
+  }
+}
+```
+
+#### Notes
+
+In the process of writing `MyHAL` , if you need extra customized functions, please declare `protected` type member functions in `MyHAL` class directly.
+
+At this point, the derivation of `HAL` is complete.
+
+### Step 2: Injecting the derived `HAL`
+
+In the initialization section of your bootloader, write the following code (I assume you have included `MyHAL.h` ):
+
+```Cpp
+HAL::inject(new MyHAL);
+```
+
+At this point, you are ready to call the corresponding static member functions of `HAL`. The program for `HAL` has been written.
+
+Next, run the `HAL` test program to see if your code is correct.
+
+### Step 3: Run the `HAL` test program
+
+You can run a simple test program after injecting the derived `HAL` to check the correctness of your code.
+
+```Cpp
+HAL::delay(100);
+HAL::printInfo("loading...");
+HAL::delay(500);
+HAL::printInfo("astra UI by dcfsswindy.");
+HAL::delay(100);
+```
+
+If the following message appears in the screen, congratulations! `HAL` deployment was successful.
+
+![CPT2404021245-228x114](https://github.com/dcfsswindy/oled-ui-astra/assets/59963050/c4e6e167-0abd-42d9-a5a5-0acfee856c54)
+
+### Testing `astra UI`
+
+Normally, `astra UI` is ready to work once `HAL` has been deployed.
+
+However, it is recommended that you run the test program below to test that `astra UI` is working (assuming you have included the headers correctly).
+
+```Cpp
+void setup() {
+  astra::Launcher* astraLauncher = new astra::Launcher();
+  astra::Menu* rootPage = new astra::Menu("root");
+
+  rootPage->addItem(new astra::Menu("test1"));
+
+  astraLauncher->init(rootPage);
+
+  astra::drawLogo(1000);
+}
+
+void loop() {
+  astraLauncher->update();
+}
+```
+
+If all is well, your screen will enter a menu with only one child element, `test1`, after displaying the `astra UI` startup animation.
+
+**This completes the deployment of `astra UI` . **
 
