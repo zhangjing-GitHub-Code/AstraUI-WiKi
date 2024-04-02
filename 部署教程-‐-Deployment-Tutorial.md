@@ -301,7 +301,24 @@ HAL::inject(new MyHAL);
 ```
 
 至此，您已经可以调用 `HAL` 中对应的静态成员函数了。关于 `HAL` 的程序皆已编写完毕。
- 
+
+下一步，运行 `HAL` 测试程序，测试您的代码是否正确。
+
+### 第三步：运行 `HAL` 测试程序
+
+您可以在注入派生 `HAL` 后运行一段简单的测试程序，来检验您代码的正确性。
+
+```Cpp
+HAL::delay(100);
+HAL::printInfo("loading...");
+HAL::delay(500);
+HAL::printInfo("astra UI by dcfsswindy.");
+HAL::delay(100);
+```
+
+如果屏幕中出现了如下的提示信息，恭喜您！ `HAL` 部署成功。
+
+![CPT2404021245-228x114](https://github.com/dcfsswindy/oled-ui-astra/assets/59963050/c4e6e167-0abd-42d9-a5a5-0acfee856c54)
 
 # English
 ***或者 [简体中文](#简体中文)***
