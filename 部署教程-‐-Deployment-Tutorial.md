@@ -211,7 +211,12 @@ void MyHAL::_spi_init() {
 下面是笔者所有重写了的函数，供您参考，完整的可以重写的函数列表，您可以查阅 `hal.h`
 
 ```Cpp
+//MyHAL.h
+
 class MyHAL : public HAL {
+protected:
+  u8g2_t canvasBuffer {};
+
 public:
   void _screenOn() override;
   void _screenOff() override;
@@ -256,6 +261,27 @@ public:
 public:
   void _updateConfig() override;
 };
+```
+
+同时，下面以笔者使用的 `STM32` 和 `u8g2` 图形库为例，给出一段重写的函数实现代码：
+
+```Cpp
+//MyHAL_oled.cpp
+
+void HALDreamCore::_drawPixel(float _x, float _y) {
+  u8g2_DrawPixel(&canvasBuffer, (int16_t)std::round(_x), (int16_t)std::round(_y));
+}
+
+void HALDreamCore::_drawChinese(float _x, float _y, const std::string &_text) {
+  u8g2_DrawUTF8(&canvasBuffer, (int16_t)std::round(_x), (int16_t)std::round(_y), _text.c_str());
+}
+
+void HALDreamCore::_drawVDottedLine(float _x, float _y, float _h) {
+  for (uint8_t i = 0; i < (uint8_t)std::round(_h); i++) {
+    if (i % 8 == 0 | (i - 1) % 8 == 0 | (i - 2) % 8 == 0) continue;
+    u8g2_DrawPixel(&canvasBuffer, (int16_t)std::round(_x), (int16_t)std::round(_y) + i);
+  }
+}
 ```
 
 #### 注意事项
