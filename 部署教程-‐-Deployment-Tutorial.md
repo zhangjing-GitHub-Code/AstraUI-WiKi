@@ -11,7 +11,7 @@
 
 在 `astra UI` 中，系统配置、屏幕驱动、图形绘制、I/O口驱动和生成随机数都集成在了 `HAL` 中。
 
-`HAL` 保证了 `astra UI` 的运行不受硬件平台的限制。**同时，您绝对不会在任何 `astra UI` 的代码文件中看到任何一行与硬件平台有关的代码。**如 `digitalWrite()` 或 `HAL_GPIOWritePin()` 等。
+`HAL` 保证了 `astra UI` 的运行不受硬件平台的限制。 **同时，您绝对不会在任何 `astra UI` 的代码文件中看到任何一行与硬件平台有关的代码。** 如 `digitalWrite()` 或 `HAL_GPIOWritePin()` 等。
 
 例如，当您想让系统延时500ms时，您无需执行 `delay(500); (Arduino)` 或 `HAL_Delay(500); (STM32)` ，您只需要执行 `HAL::Delay(500);` 即可。前者的代码不能在不同平台执行，也非常不易于移植，但采用了 `HAL` 的后者，与硬件平台无关，可以在任何平台执行。
 
@@ -362,7 +362,7 @@ Before we start the deployment tutorial, I would like to introduce you to the `a
 
 In `astra UI` , system configuration, screen driver, graphics drawing, I/O port driver and random number generation are all integrated in `HAL` .
 
-The `HAL` ensures that the `astra UI` runs regardless of the hardware platform. **At the same time, you will never see a single line of hardware-related code in any `astra UI` code file. ** Such as `digitalWrite()` or `HAL_GPIOWritePin()` .
+The `HAL` ensures that the `astra UI` runs regardless of the hardware platform. **At the same time, you will never see a single line of hardware-related code in any `astra UI` code file.**  Such as `digitalWrite()` or `HAL_GPIOWritePin()` .
 
 For example, when you want to delay the system by 500ms, you don't need to execute `delay(500); (Arduino)` or `HAL_Delay(500); (STM32)` , you just need to execute `HAL::Delay(500);` . The former code cannot be executed on different platforms and is very non-portable, but the latter with `HAL` is hardware platform independent and can be executed on any platform.
 
