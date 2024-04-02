@@ -369,3 +369,59 @@ For example, when you want to delay the system by 500ms, you don't need to execu
 This allows `astra UI` to be deployed and run on almost any major hardware platform, you just need to `overload` the corresponding `HAL` functions for your hardware platform.
 
 If you are still a bit confused, due to the limitation of space, I attach part of the prototype code of `HAL` class here:
+
+```Cpp
+class HAL {
+private:
+  static HAL *hal;
+
+public:
+  static HAL *get();    //get hal instance.
+  static bool check();  //check if there is a hal instance.
+
+  static bool inject(HAL *_hal);  //inject HAL instance and run hal_init.
+  static void destroy();  //destroy HAL instance.
+
+  virtual ~HAL() = default;
+
+  virtual std::string type() { return "Base"; }
+
+  virtual void init() {}
+
+protected:
+  sys::config config;
+
+public:
+  static void canvasUpdate() { get()->_canvasUpdate(); }
+  virtual void _canvasUpdate() {}
+
+  static void canvasClear() { get()->_canvasClear(); }
+  virtual void _canvasClear() {}
+
+  static void drawPixel(float _x, float _y) { get()->_drawPixel(_x, _y); }
+  virtual void _drawPixel(float _x, float _y) {}
+
+  static void drawEnglish(float _x, float _y, const std::string &_text) { get()->_drawEnglish(_x, _y, _text); }
+  virtual void _drawEnglish(float _x, float _y, const std::string &_text) {}
+
+  static void drawChinese(float _x, float _y, const std::string &_text) { get()->_drawChinese(_x, _y, _text); }
+  virtual void _drawChinese(float _x, float _y, const std::string &_text) {}
+
+  /**
+   * @brief system timers.
+   */
+public:
+  static void delay(unsigned long _mill) { get()->_delay(_mill); }
+  virtual void _delay(unsigned long _mill) {}
+
+  //...
+};
+```
+
+As you can see, `HAL` is made up of a number of groups of functions, a static member function and a dummy member function whose name begins with an underscore.
+
+In each group, the static member function's task is to call the `get()` method to get the current instance of `HAL` stored in the `HAL` class (i.e., the derived `HAL` that you write below). You then call the relevant methods in the `HAL` instance.
+
+Here is the implementation of the `inject()` method, which is used to inject the derived `HAL` back into the `HAL` . and stores the derived `HAL` pointer in `HAL` .
+
+
