@@ -440,3 +440,85 @@ void update();
 
 # English
 ***或者 [简体中文](#简体中文)***
+
+## Interfaces / `APIs`
+
+###  `Menu`
+
+#### New Menu / Constructor
+
+The function that creates the new menu (i.e. the constructor) is polymorphic. Depending on the parameters passed in, different menus are created.
+
+```Cpp
+explicit Menu(std::string _title);                          //Create list class with title _title
+Menu(std::string _title, std::vector<uint8_t> _pic);        //Create icon class Title as _title Icon as _pic
+```
+
+Menus created through different constructors will have different values for `selfType`, which indicates whether the menu class instance is a list page or an icon page.
+
+####  `init()` method and `deInit()` method
+
+Initializes/inverse initializes the specified menu.
+
+The initialization method determines the position of each element based on the current position of the `Camera` and the configuration file. It also performs an entry animation (not a transition animation).
+The inverse initialization method performs an exit animation.
+
+```Cpp
+void init(std::vector<float> _camera);
+void deInit();
+```
+
+##### Note
+
+Executing the `init()` method is mandatory and cannot be omitted. But usually we don't need to execute this method, because the `Launcher::open()` , `Launcher::close()` , and `Launcher::init()` methods mentioned in the following sections all call the `init()` method of the corresponding menu.
+
+####  `addItem()` method
+
+Adds a submenu to the specified menu.
+
+```Cpp
+bool addItem(Menu* _page);
+```
+
+##### Return Value
+
++ Returns `True` if the add is successful.
++ Returns `False` if addition fails. 
+
+##### Usage Examples
+
+```Cpp
+astra::Menu* rootPage = new astra::Menu("root");            //Create a root menu
+rootPage->addItem(new astra::Menu("test1"));                //Add a list class to the root menu titled "test1".
+//rootPage->addItem(new astra::Menu("test1", pic_0));       //Add an icon class to the root menu with the title "test1" and the icon pic_0.
+```
+
+##### Note
++ The type `selfType` of the first submenu `Menu2` added to the empty menu `Menu1` determines the type of the `Menu1` menu, i.e. `childType` .
+	+ If `Menu2` is a list class menu, then `Menu1` is determined to be a list class, and all submenu items are rendered as such.
+	+ If submenus are added to `Menu1` later, they can only be of list class, and so on.
+	+ If a submenu of the wrong type is added to `Menu1` , the method returns `False` . 
++ When rendering a menu, it is rendered according to the `childType` of this menu.
+
+####  `render()` method
+
+Used to render the current page.
+
+```Cpp
+void render(std::vector<float> _camera);                    //render all child item.
+```
+
+##### Usage Example
+
+```Cpp
+Menu* currentPage;
+Camera* camera;
+
+currentPage->render(camera->getPosition());
+```
+
+The `camera->getPosition()` method is described in more detail below.
+
+##### Notes
+
+The `render()` method essentially renders **all subsequent menus** of the current menu at the corresponding location, see [menu concepts](https://github.com/dcfsswindy/oled-ui-astra/wiki/astra-UI%E4%BB%8B%E7%BB%8D-%E2%80%90-astra-UI-Introduction#menu) for details.
