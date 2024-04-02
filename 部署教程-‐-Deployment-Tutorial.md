@@ -320,5 +320,32 @@ HAL::delay(100);
 
 ![CPT2404021245-228x114](https://github.com/dcfsswindy/oled-ui-astra/assets/59963050/c4e6e167-0abd-42d9-a5a5-0acfee856c54)
 
+### 测试 `astra UI`
+
+一般情况下， `HAL` 部署完成后，`astra UI` 就已经可以正常工作了。
+
+但还是建议您运行下方的测试程序，用于测试 `astra UI` 是否正常工作（假设您已经正确包含了相关头文件）。
+
+```Cpp
+//初始化部分
+void setup() {
+  astra::Launcher* astraLauncher = new astra::Launcher();
+  astra::Menu* rootPage = new astra::Menu("root");
+
+  rootPage->addItem(new astra::Menu("test1"));
+
+  astraLauncher->init(rootPage);
+
+  astra::drawLogo(1000);
+}
+
+//主循环部分
+void loop() {
+  astraLauncher->update();
+}
+```
+
+若一切正常，您的屏幕将在显示 `astra UI` 开机动画后进入一个只有一个子元素 `test1` 的菜单。
+
 # English
 ***或者 [简体中文](#简体中文)***
