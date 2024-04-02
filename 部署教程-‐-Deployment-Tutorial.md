@@ -95,6 +95,23 @@ bool HAL::inject(HAL *_hal) {
 
 ### 第一步：编写派生 `HAL`
 
+首先您需要在您的 `.h` 文件中包含 `hal.h` 头文件。
+
+继承并编写派生 `HAL` ，同时给您的派生 `HAL` 命名，这里以 `MyHAL` 为例，下文中都用 `MyHAL` 指代派生 `HAL` 。
+
+```Cpp
+//MyHAL.h
+
+#pragma once
+#ifndef MYHAL_H_
+#define MYHAL_H_
+
+#include "hal.h"
+class MyHAL : public HAL {
+
+};
+```
+
 
 
 
