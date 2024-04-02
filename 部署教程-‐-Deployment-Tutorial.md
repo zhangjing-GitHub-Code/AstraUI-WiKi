@@ -99,6 +99,8 @@ bool HAL::inject(HAL *_hal) {
 
 继承并编写派生 `HAL` ，同时给您的派生 `HAL` 命名，这里以 `MyHAL` 为例，下文中都用 `MyHAL` 指代派生 `HAL` 。
 
+顺带编写一个默认的构造函数。 ^_^
+
 ```Cpp
 //MyHAL.h
 
@@ -108,6 +110,9 @@ bool HAL::inject(HAL *_hal) {
 
 #include "hal.h"
 class MyHAL : public HAL {
+
+public:
+  MyHAL() = default;
 
 };
 ```
