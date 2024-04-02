@@ -192,7 +192,71 @@ void MyHAL::_spi_init() {
 
 #### 重写其他方法
 
+接下来是重头戏。
 
+您需要根据您选择的图形库（或者在不借助图形库的情况下），**重写**绘制像素、绘制直线、绘制矩形等一系列方法。
+
+您需要根据您的屏幕，重写刷新画布、清空屏幕等一系列方法。
+
+您需要根据您的硬件平台，重写延时、获取开机时间、生成真随机数等一系列方法。
+
+您需要根据您的外设类型，重写蜂鸣器发声、按键扫描等一系列方法。
+
+当然，如果您明确您的需求，可以选择不重写某些方法，使用 `HAL` 父类中默认的方法实现。
+
+比如，如果您不需要生成真随机数，您就无需重写 `_getRandomSeed()` 方法，或者直接让其返回一个固定值即可。
+
+比如，您不需或没有蜂鸣器，您就无需重写 `_beep()` 及其一系列方法。
+
+下面是笔者所有重写了的函数，供您参考，完整的可以重写的函数列表，您可以查阅 `hal.h`
+
+```Cpp
+class MyHAL : public HAL {
+public:
+  void _screenOn() override;
+  void _screenOff() override;
+
+public:
+  void* _getCanvasBuffer() override;
+  uint8_t _getBufferTileHeight() override;
+  uint8_t _getBufferTileWidth() override;
+  void _canvasUpdate() override;
+  void _canvasClear() override;
+  void _setFont(const uint8_t * _font) override;
+  uint8_t _getFontWidth(std::string& _text) override;
+  uint8_t _getFontHeight() override;
+  void _setDrawType(uint8_t _type) override;
+  void _drawPixel(float _x, float _y) override;
+  void _drawEnglish(float _x, float _y, const std::string& _text) override;
+  void _drawChinese(float _x, float _y, const std::string& _text) override;
+  void _drawVDottedLine(float _x, float _y, float _h) override;
+  void _drawHDottedLine(float _x, float _y, float _l) override;
+  void _drawVLine(float _x, float _y, float _h) override;
+  void _drawHLine(float _x, float _y, float _l) override;
+  void _drawBMP(float _x, float _y, float _w, float _h, const uint8_t* _bitMap) override;
+  void _drawBox(float _x, float _y, float _w, float _h) override;
+  void _drawRBox(float _x, float _y, float _w, float _h, float _r) override;
+  void _drawFrame(float _x, float _y, float _w, float _h) override;
+  void _drawRFrame(float _x, float _y, float _w, float _h, float _r) override;
+
+public:
+  void _delay(unsigned long _mill) override;
+  unsigned long _millis() override;
+  unsigned long _getTick() override;
+  unsigned long _getRandomSeed() override;
+
+public:
+  void _beep(float _freq) override;
+  void _beepStop() override;
+  void _setBeepVol(uint8_t _vol) override;
+
+public:
+  bool _getKey(key::KEY_INDEX _keyIndex) override;
+
+public:
+  void _updateConfig() override;
+};
+```
 
 #### 注意事项
 
