@@ -303,13 +303,13 @@ bool destroy(); //destroy menu instance.
 
 同时更改当前注入了的菜单的 `selectIndex`。
 
-##### 注意事项
-
-`Selector` 移动是有动画的，所以该方法需要放在循环中调用。
-
 ```Cpp
 void go(uint8_t _index);
 ```
+
+##### 注意事项
+
+`Selector` 移动是有动画的，所以该方法需要放在循环中调用。
 
 ####  `render()` 方法
 
@@ -321,10 +321,6 @@ void render(std::vector<float> _camera);
 ##### 注意事项
 
 因为涉及到渲染，需要在循环内调用。
-
-
-
-
 
 ###  `Launcher`
 
@@ -671,4 +667,209 @@ bool isMoving();
 
 #### `reset()` method
 
-Move `Camera` back to [initial position]().
+Move `Camera` back to [initial position](https://github.com/dcfsswindy/oled-ui-astra/wiki/%E6%8E%A5%E5%8F%A3-%E2%80%90-APIs#note-2).
+
+```Cpp
+void reset();
+```
+
+####  `update()` method
+
+Takes over all movement of the `Camera`. It also updates the position of `Camera` .
+
+So, you don't need to actively execute the above methods related to moving `Camera` , the `update()` method will take care of it.
+
+```Cpp
+void update(Menu *_menu, Selector *_selector);
+```
+
+##### Note
+
+It needs to be executed inside a loop.
+
+###  `Selector`
+
+#### New `Selector` / Constructor
+
+No special handling.
+
+```Cpp
+Selector() = default;
+```
+
+####  `getPosition()` method
+
+Get the coordinates of the `Selector` .
+
+```Cpp
+std::vector<float> getPosition();
+```
+
+##### Return Value
+
+Returns the coordinate container of the `Selector` , [refer here](https://github.com/dcfsswindy/oled-ui-astra/wiki/%E6%8E%A5%E5%8F%A3-%E2%80%90-APIs#getposition-method)
+
+####  `inject()` method
+
+Injects a menu into a `Selector` so that the `Selector` can get the coordinates, index, etc. of the corresponding menu.
+
+```Cpp
+bool inject(Menu* _menu); //inject menu instance to prepare for render.
+```
+
+##### Return Value
+
++ Returns `True` if the operation is legal.
++ Returns `False` if the operation is illegal, e.g., if a non-existent menu is currently injected.
+
+####  `destory()` method
+
+Destroys and frees the injected menu.
+
+```Cpp
+bool destroy(); //destroy menu instance.
+```
+
+##### Return Value
+
++ Returns `True` if the operation is legal.
++ Returns `False` if the operation is illegal, e.g. no menu is currently injected.
+
+####  `go()` method
+
+Moves the `Selector` to the specified element of the menu.
+
+Also changes the `selectIndex` of the currently injected menu.
+
+```Cpp
+void go(uint8_t _index);
+```
+
+##### Notes
+
+The `Selector` movement is animated, so this method needs to be called in a loop.
+
+####  `render()` method
+
+Renders the `Selector` to the canvas.
+
+```Cpp
+void render(std::vector<float> _camera);
+```
+
+##### Note
+
+Because it involves rendering, it needs to be called inside a loop.
+
+###  `Launcher`
+
+#### New `Launcher` / Constructor
+
+There is no special treatment.
+
+```Cpp
+Launcher() = default;
+```
+
+####  `popInfo()` method
+
+System-level pop-ups.
+
+```Cpp
+void popInfo(std::string _info, uint16_t _time);
+```
+
+####  `init()` method
+
+Initialization method to initialize the `Launcher` .
+
+After executing this method, the `Launcher` creates a new `MenuTree` based on the `RootMenu` you passed in.
+
+```Cpp
+void init(Menu* _rootPage);
+```
+
+##### Usage Example
+
+```Cpp
+astra::Launcher* astraLauncher = new astra::Launcher();
+astra::Menu* rootPage = new astra::Menu("root");
+
+astraLauncher->init(rootPage);
+```
+
+##### Note
+
+Note that this method requires user-initiated execution during the initialization phase of the code.
+
+####  `open()` method
+
+Open the submenu corresponding to `selectIndex(current selection)` of `CurrentPagePointer` of `Launcher` .
+
+For example, if you are currently in the `root menu` and have selected the second item of the `root menu` , then this method will open the second submenu of the `root menu` . At the same time, it moves the `current page pointer' to a new page.
+
+```Cpp
+bool open();
+``` 
+
+##### Execution steps
++ Determine whether the operation is legal or not, if not, pop up an error popup.
++ Call `deInit()` method of old menu.
++ Move `current page pointer` to new page.
++ Call the `init()` method of the new menu.
++ Call the `inject()` method of `Selector` to inject the selector into the new menu.
+
+##### Return Value
++ Returns `False` if the operation is illegal.
++ Returns `True` if the operation is legal.
+
+##### Note
+
+If you try to open an empty menu, by default, the `Launcher` will display a system-level pop-up window with the message "empty page!". Also, the various pointers will not be moved.
+
+If you try to open a menu that doesn't exist, by default the `Launcher` will show a system-level popup with the message "unreferenced page!". Also, the various pointers will not be moved.
+
+####  `close()` method
+
+Close the current page and return to the previous page of the current page.
+
+Also moves the `Launcher`'s `current page pointer` to a new page.
+
+```Cpp
+bool close();
+``` 
+
+##### Execution steps
++ Determine whether the operation is legal or not, if not, pop up an error popup.
++ Call `deInit()` method of old menu.
++ Move `current page pointer` to new page.
++ Call the `init()` method of the new menu.
++ Call the `inject()` method of `Selector` to inject the selector into the new menu.
+
+##### Return Value
++ Returns `False` if the operation is illegal.
++ Returns `True` if the operation is legal.
+
+##### Note
+
+If you try to go back to an empty menu, by default the `Launcher` will show a system level popup with the message "empty page!". Also, the various pointers will not be moved.
+
+If you try to go back to a menu that doesn't exist, by default the `Launcher` will show a system-level popup with the message "unreferenced page!". Also, the various pointers will not be moved.
+
+####  ** `update()` method**
+
+** takes over everything. **
+
+`astra UI` , start!
+
+Starts and renders `astra UI` .
+
+```Cpp
+void update();
+```
+
+##### Note
+
+This method should and can only be called in the main loop of the program.
+
+:P
