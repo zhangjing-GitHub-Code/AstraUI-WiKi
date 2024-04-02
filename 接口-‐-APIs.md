@@ -229,7 +229,7 @@ bool isMoving();
 
 ####  `reset()` 方法
 
-将 `Camera` 移动回[初始位置](https://github.com/dcfsswindy/oled-ui-astra/wiki/astra-UI%E4%BB%8B%E7%BB%8D-%E2%80%90-astra-UI-Introduction#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9-1)。
+将 `Camera` 移动回[初始位置](https://github.com/dcfsswindy/oled-ui-astra/wiki/%E6%8E%A5%E5%8F%A3-%E2%80%90-APIs#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9-3)。
 
 ```Cpp
 void reset();
