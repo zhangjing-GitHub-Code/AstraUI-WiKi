@@ -300,5 +300,8 @@ void HALDreamCore::_drawVDottedLine(float _x, float _y, float _h) {
 HAL::inject(new MyHAL);
 ```
 
+至此，您已经可以调用 `HAL` 中对应的静态成员函数了。关于 `HAL` 的程序皆已编写完毕。
+ 
+
 # English
 ***或者 [简体中文](#简体中文)***
