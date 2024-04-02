@@ -856,9 +856,9 @@ If you try to go back to an empty menu, by default the `Launcher` will show a sy
 
 If you try to go back to a menu that doesn't exist, by default the `Launcher` will show a system-level popup with the message "unreferenced page!". Also, the various pointers will not be moved.
 
-####  ** `update()` method**
+####  **`update()` method**
 
-** takes over everything. **
+**takes over everything.**
 
 `astra UI` , start!
 
