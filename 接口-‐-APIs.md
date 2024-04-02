@@ -521,4 +521,154 @@ The `camera->getPosition()` method is described in more detail below.
 
 ##### Notes
 
-The `render()` method essentially renders **all subsequent menus** of the current menu at the corresponding location, see [menu concepts](https://github.com/dcfsswindy/oled-ui-astra/wiki/astra-UI%E4%BB%8B%E7%BB%8D-%E2%80%90-astra-UI-Introduction#menu) for details.
+The `render()` method essentially renders **all subsequent menus** of the current menu at the corresponding location, see [menu concepts](https://github.com/dcfsswindy/oled-ui-astra/wiki/astra-UI%E4%BB%8B%E7%BB%8D-%E2%80%90-astra-UI-Introduction#menu-1) for details.
+
+####  `getItemNum()` method
+
+Gets the number of child elements the specified menu contains.
+
+```Cpp
+[[nodiscard]] uint8_t getItemNum() const;
+```
+
+##### Return Value
+
+Returns the number of child elements contained in the specified menu.
+
+####  `getItemPosition()` method
+
+Gets the position of the element at the specified index in the specified menu.
+
+```Cpp
+[[nodiscard]] Position getItemPosition(uint8_t _index) const;
+```
+
+##### Return Value
+
+Returns the position of the element at the specified index in the specified menu.
+
+####  `getNext()` method
+
+Gets a pointer to the child element of the specified menu that is being selected.
+
+```Cpp
+[[nodiscard]] Menu* getNext() const;
+```
+
+##### Return Value
+
+Returns a pointer to the child element of the specified menu that is being selected.
+
+####  `getPreview()` method
+
+Gets the preview menu pointer for the specified menu.
+
+```Cpp
+[[nodiscard]] Menu* getPreview() const;
+```
+
+##### Return Value
+
+Returns a pointer to the preorder menu for the specified menu.
+
+###  `Widget`
+
+*(future)*
+
+###  `Camera`
+
+#### New `Camera` / Constructors
+
+The `Camera` constructor is polymorphic and creates a different `Camera` depending on the parameters passed in.
+
+```Cpp
+Camera();                                                   //Create a Camera entity positioned at (0, 0)
+Camera(float _x, float _y);                                 //Create a Camera entity Location at (_x, _y)
+```
+
+##### Note
+
+When creating a Camera, if no coordinates are given, `(0, 0)` is its initial coordinates, if coordinates are given, the initial coordinates are equal to the given coordinates.
+
+The initial coordinates are stored inside the Camera instance.
+
+####  `outOfView()` method
+
+Used to determine if a given point is outside the view.
+
+```Cpp
+uint8_t outOfView(float _x, float _y);
+```
+
+##### Return Value
+
++ Returns `0` when the specified coordinates are inside the field of view.
++ Returns `1` when the specified coordinates are above or to the left of the field of view.
++ Returns `2` when the specified coordinate is below or to the right of the field of view
+
+####  `getPosition()` method
+
+The most important method of `Camera` , returns the current position of `Camera` .
+
+```Cpp
+std::vector<float> getPosition();
+```
+
+##### Return Value
+
+Returns the `{x, y}` container of the current coordinates of the `Camera` .
+
+Where `getPosition()[0]` represents the `x` coordinate of `Camera` .
+
+Similarly, `getPosition()[1]` represents the `y` coordinate of `Camera` .
+
+####  `go()` and its set of methods
+
+are used to move the `Camera` to the specified position. There are four move functions.
+
+```Cpp
+void go(float _x, float _y);                                //Moves the Camera to (_x, _y) and renders a smooth moving animation
+void goDirect(float _x, float _y);                          //Direct movement No rendering animation
+void goHorizontal(float _x);                                //Horizontal movement No change in vertical coordinate
+void goVertical(float _y);                                  //Vertical movement No change in horizontal coordinates
+```
+
+##### Note
+
+Since we need to render the animation, and the rendering of the animation is not done instantly, only `goDirect()` can be executed outside the loop, the other three methods must be executed inside the loop.
+
+It is also recommended (or you should) to use the `goDirect()` method to move the `Camera` in a one-time-only method such as initialize, instead of the other three methods.
+
+#### Page Scroll Methods
+
+Contains five methods that are used to move `Camera` after an element has overflowed the field of view.
+
+```Cpp
+void goToNextPageItem();                                    //Move Camera to next page For list class full page scrolling
+void goToPreviewPageItem();                                 //Move Camera to previous page For list class full page scrolling
+void goToListItemPage(uint8_t _index);                      //Moves the Camera to the specified page Used for full page scrolling in list classes
+void goToListItemRolling(std::vector<float> _posSelector);  //Scroll Camera by one or more rows For single row scrolling in list class
+void goToTileItem(uint8_t _index);                          //Moves the Camera to the specified element Used to center the selection on the icon page
+```
+
+##### Note 
+
+Make sure that the `childType` of your current menu matches the applicable page type of the method in the note above, or you will get an unexpected error.
+
+This pitfall may be circumvented in a future release.
+
+####  `isMoving()` method
+
+Determines and returns the current state of the `Camera` .
+
+```Cpp
+bool isMoving();
+```
+
+##### Return Value
++ When `Camera` is moving, return `True` .
++ When `Camera` is not moving, return `False` .
+
+#### `reset()` method
+
+Move `Camera` back to [initial position]().
