@@ -95,6 +95,8 @@ bool HAL::inject(HAL *_hal) {
 
 ### 第一步：编写派生 `HAL`
 
+#### 编写框架
+
 首先您需要在您的 `.h` 文件中包含 `hal.h` 头文件。
 
 继承并编写派生 `HAL` ，同时给您的派生 `HAL` 命名，这里以 `MyHAL` 为例，下文中都用 `MyHAL` 指代派生 `HAL` 。
@@ -109,15 +111,14 @@ bool HAL::inject(HAL *_hal) {
 #define MYHAL_H_
 
 #include "hal.h"
-class MyHAL : public HAL {
 
+class MyHAL : public HAL {
 public:
   MyHAL() = default;
-
 };
 ```
 
-
+#### 编写 `MyHAL` 的 `_xx_init()` 和 `init` 方法
 
 
 # English
