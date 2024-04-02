@@ -351,3 +351,21 @@ void loop() {
 
 # English
 ***或者 [简体中文](#简体中文)***
+
+## Deployment tutorial
+
+### About `HAL`
+
+Special thanks to @Forairaaaaa, I have learned a lot about `monica` based on his open source `monica` .
+
+Before we start the deployment tutorial, I would like to introduce you to the `astra UI` companion `HAL` , the `Hardware Abstraction Layer` .
+
+In `astra UI` , system configuration, screen driver, graphics drawing, I/O port driver and random number generation are all integrated in `HAL` .
+
+The `HAL` ensures that the `astra UI` runs regardless of the hardware platform. **At the same time, you will never see a single line of hardware-related code in any `astra UI` code file. ** Such as `digitalWrite()` or `HAL_GPIOWritePin()` .
+
+For example, when you want to delay the system by 500ms, you don't need to execute `delay(500); (Arduino)` or `HAL_Delay(500); (STM32)` , you just need to execute `HAL::Delay(500);` . The former code cannot be executed on different platforms and is very non-portable, but the latter with `HAL` is hardware platform independent and can be executed on any platform.
+
+This allows `astra UI` to be deployed and run on almost any major hardware platform, you just need to `overload` the corresponding `HAL` functions for your hardware platform.
+
+If you are still a bit confused, due to the limitation of space, I attach part of the prototype code of `HAL` class here:
