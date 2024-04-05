@@ -25,6 +25,8 @@
 
 进行了上述操作后，如果您的 `开发环境` 并非 `原生支持C++` 。您还需要编写以下两个文件，放入工程文件夹内。
 
+**请注意，在 `astra UI` 发行版的代码压缩包内，包含了 `astra_rocket.h` 和 `astra_rocket.cpp` 文件，是笔者已经编写好的引导文件，分别对应下文中的 `test.h` 和 `test.cpp` ，您可以直接使用它们。**
+
 ```Cpp
 //test.h
 
@@ -458,6 +460,8 @@ An example tutorial using `CLion` + `STM32` [click here](https://blog.csdn.net/w
 If you are using another `development environment` or `hardware platform`, you can find out how to do it yourself. **Trust me, if you can read this article, you can do this step. **
 
 After doing the above, if your `development environment` is not `natively supporting C++` . You will also need to write the following two files and put them in the project folder.
+
+**Please note that the `astra_rocket.h` and `astra_rocket.cpp` files included in the `astra UI` distribution's code zip are bootstrap files that the author has already written, corresponding to `test.h` and `test.cpp` below, and which you can use directly. **
 
 ```Cpp
 //test.h
