@@ -3,6 +3,90 @@
 
 ## 部署教程
 
+### 前言
+
+在一切开始之前，您需要确保您的 `编译器` ，或者说 `开发环境` 支持 `C++` 编程。
+
+下面将给出一些已明确的支持 `C++` 编程的 `开发环境` ：
+
+1. Keil
+2. CLion
+3. Arduino IDE (原生支持 `C++` )
+4. STM32CubeIDE
+5. IAR
+6. Eclipse
+7. ...
+
+如果您正在使用上述的某一种 `开发环境` ，您还需要通过某些修改，使得您的 `开发环境` 可以编译并烧录 `C++` 程序到您的硬件平台。
+
+下面给出使用 `CLion` + `STM32` 的一个[范例教程](https://blog.csdn.net/weixin_44934226/article/details/124783825)
+
+如果您使用的是其他 `开发环境` 或者 `硬件平台` ， 可以自行检索具体的方法。**相信我，如果您可以看到这篇文章，那您就一定可以做好这一步。**
+
+进行了上述操作后，如果您的 `开发环境` 并非 `原生支持C++` 。您还需要编写以下两个文件，放入工程文件夹内。
+
+```Cpp
+//test.h
+
+#ifndef __TEST_H_
+#define __TEST_H_
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+/*---c---*/
+#include "main.h"
+#include "gpio.h"
+
+//此处添加其它C头文件 add other c header there.
+
+void CppMain();  //主程序函数 main program method.
+
+#ifdef __cplusplus
+}
+
+/*---c++---*/
+#include "LED.h"
+
+//此处添加其他Cpp头文件 add other cpp header there.
+
+#endif
+#endif
+```
+
+```Cpp
+//test.cpp
+
+//主程序入口 main program
+void CppMain() {
+  for(;;) {
+    //主循环 main loop
+  }
+}
+```
+
+最后一步，您需要在您的 `main.c` 中包含您编写好的头文件，并按下文方式调用您编写好的引导函数。
+
+```Cpp
+//main.c
+
+#include "test.h"
+
+.
+.
+.
+
+CppMain();  
+//在进入原本的主循环之前调用该函数 接管程序
+//Call this function to take over the program before entering the original main loop.
+
+while(1) {
+  //弃用 deprecated.
+}
+```
+
+万事开头难，您已经做完了最难的一步，接下来让我们开始吧！
+
 ### 关于 `HAL`
 
 特别感谢 @Forairaaaaa ，笔者基于其开源的 `monica` ，学习到了很多相关知识。
