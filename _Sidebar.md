@@ -1,6 +1,7 @@
 ## Preface
 
-* [序言 - Preamble](https://github.com/dcfsswindy/oled-ui-astra/wiki#%E5%BA%8F%E8%A8%80---preamble)
+* [序言](https://github.com/dcfsswindy/oled-ui-astra/wiki#%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
+* [Preamble](https://github.com/dcfsswindy/oled-ui-astra/wiki#English)
 
 ## Getting Started
 
