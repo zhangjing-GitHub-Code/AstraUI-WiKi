@@ -27,34 +27,3 @@ Thank you all for your support, may you have fun, and if you have any questions,
 dcfsswindy. 2024.03.31 10:14
 
 Beijing
-
----
-# Wiki 目录 - Wiki Contents
-+ `astra UI` 介绍 - `astra UI` Introduction
-	+ 简介 - Synopsis
-	+ 硬件要求 - Hardware Requirements
-	+ 文件结构 - File Structure
-	+ 关于 `Item` - About `Item`
-		+ 基本概念 - Basic Concept
-		+ `Menu`
-		+ `Widget` *(future)*
-		+ `Camera`
-		+ `Selector`
-	+ 关于 `Launcher` - About `Launcher`
-+ 接口 - `APIs`
-+ 关于 `HAL` - About `HAL`
-+ **部署教程 - Deployment Tutorial**
-	+ 编写派生 `HAL` - Write Derived `HAL`
-		+ 继承 `HAL` 类 - Inherit the `HAL` Class
-		+ 链接图形库 *（可选的）* - Link Graphics Library *(optional)*
-		+ 编写 `_xx_init()` 方法 - Write `_xx_init()` Method
-		+ 重写 `init()` - 方法 Override `init()` Method
-		+ 重写其他方法 - Override Other Method
-		+ 编写其他方法 *（可选的）* - Write Other Method *(optional)*
-	+ 注入派生 `HAL` - Inject Derived `HAL`
-	+ 运行 `HAL` 测试程序 - Run the HAL Test Program
-	+ Have Fun! 
-+ 例程 - Example 
-+ 更新计划 - Update Program
-+ 更新日志 - Update Log
-+ FAQ
