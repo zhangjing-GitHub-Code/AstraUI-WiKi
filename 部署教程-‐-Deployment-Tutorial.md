@@ -461,7 +461,7 @@ If you are using another `development environment` or `hardware platform`, you c
 
 After doing the above, if your `development environment` is not `natively supporting C++` . You will also need to write the following two files and put them in the project folder.
 
-**Please note that the `astra_rocket.h` and `astra_rocket.cpp` files included in the `astra UI` distribution's code zip are bootstrap files that the author has already written, corresponding to `test.h` and `test.cpp` below, and which you can use directly. **
+**Please note that the `astra_rocket.h` and `astra_rocket.cpp` files included in the `astra UI` distribution's code zip are bootstrap files that the author has already written, corresponding to `test.h` and `test.cpp` below, and which you can use directly.**
 
 ```Cpp
 //test.h
