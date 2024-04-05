@@ -38,9 +38,9 @@ extern "C" {
 #include "main.h"
 #include "gpio.h"
 
-//此处添加其它C头文件 add other c header there.
+//此处添加其它C头文件
 
-void CppMain();  //主程序函数 main program method.
+void CppMain();  //主程序函数
 
 #ifdef __cplusplus
 }
@@ -48,7 +48,7 @@ void CppMain();  //主程序函数 main program method.
 /*---c++---*/
 #include "LED.h"
 
-//此处添加其他Cpp头文件 add other cpp header there.
+//此处添加其他Cpp头文件
 
 #endif
 #endif
@@ -57,10 +57,10 @@ void CppMain();  //主程序函数 main program method.
 ```Cpp
 //test.cpp
 
-//主程序入口 main program
+//主程序入口
 void CppMain() {
   for(;;) {
-    //主循环 main loop
+    //主循环
   }
 }
 ```
@@ -78,10 +78,9 @@ void CppMain() {
 
 CppMain();  
 //在进入原本的主循环之前调用该函数 接管程序
-//Call this function to take over the program before entering the original main loop.
 
 while(1) {
-  //弃用 deprecated.
+  //弃用
 }
 ```
 
@@ -437,6 +436,89 @@ void loop() {
 ***或者 [简体中文](#简体中文)***
 
 ## Deployment tutorial
+
+### Preface
+
+Before anything else, you need to make sure that your `compiler` , or `development environment` , supports `C++` programming.
+
+The following are some of the `development environments` that explicitly support `C++` programming:
+
+1. Keil
+2. CLion
+3. Arduino IDE (natively supports `C++` )
+4. STM32CubeIDE
+5. IAR
+6. Eclipse
+7. ...
+
+If you are using one of the above `development environments` , you will need to make some modifications so that your `development environment` can compile and burn `C++` programs to your hardware platform.
+
+An example tutorial using `CLion` + `STM32` [click here](https://blog.csdn.net/weixin_44934226/article/details/124783825).
+
+If you are using another `development environment` or `hardware platform`, you can find out how to do it yourself. **Trust me, if you can read this article, you can do this step. **
+
+After doing the above, if your `development environment` is not `natively supporting C++` . You will also need to write the following two files and put them in the project folder.
+
+```Cpp
+//test.h
+
+#ifndef __TEST_H_
+#define __TEST_H_
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+/*---c---*/
+#include "main.h"
+#include "gpio.h"
+
+//add other c header here.
+
+void CppMain();  //main program method.
+
+#ifdef __cplusplus
+}
+
+/*---c++---*/
+#include "LED.h"
+
+//add other cpp header here.
+
+#endif
+#endif
+```
+
+```Cpp
+//test.cpp
+
+//main program
+void CppMain() {
+  for(;;) {
+    //main loop
+  }
+}
+```
+
+As a final step, you need to include the header file you wrote in your `main.c` and call the bootstrap function you wrote as follows.
+
+```Cpp
+//main.c
+
+#include "test.h"
+
+.
+.
+.
+
+CppMain();  
+//Call this function to take over the program before entering the original main loop.
+
+while(1) {
+  //deprecated.
+}
+```
+
+**It's hard to start everything, and you've already done the hardest step, so let's get started next!**
 
 ### About `HAL`
 
