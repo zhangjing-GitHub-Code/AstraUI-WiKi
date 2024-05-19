@@ -22,8 +22,8 @@
 
 ## Plan
 
-* [更新计划](https://github.com/dcfsswindy/oled-ui-astra/wiki/%E6%9B%B4%E6%96%B0%E8%AE%A1%E5%88%92-%E2%80%90-Update-Program#%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
-* [Update Program](https://github.com/dcfsswindy/oled-ui-astra/wiki/%E6%9B%B4%E6%96%B0%E8%AE%A1%E5%88%92-%E2%80%90-Update-Program#English)
+* [更新计划](https://github.com/dcfsswindy/oled-ui-astra/wiki/%E6%9B%B4%E6%96%B0%E8%AE%A1%E5%88%92-%E2%80%90-Update-Plans#%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
+* [Update Plans](https://github.com/dcfsswindy/oled-ui-astra/wiki/%E6%9B%B4%E6%96%B0%E8%AE%A1%E5%88%92-%E2%80%90-Update-Plans#English)
 * [更新日志](https://github.com/dcfsswindy/oled-ui-astra/wiki/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97-%E2%80%90-Update-Log#%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
 * [Update Log](https://github.com/dcfsswindy/oled-ui-astra/wiki/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97-%E2%80%90-Update-Log#English)
 

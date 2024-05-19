@@ -1,1 +1,1 @@
-*as astra per aspera*
+*ad astra per aspera*
